@@ -25,7 +25,7 @@ public class App {
 		post8Tags.add("Science");
 		
 		matias.createPost("post1", "This is the text of post1", null);
-		matias.createPost("post2", "This is the text of post2", null);
+		Post post2 = matias.createPost("post2", "This is the text of post2", null);
 		matias.createPost("post3", "This is the text of post3", post3Tags);
 		matias.createPost("post4", "This is the text of post4", null);
 		matias.createPost("post5", "This is the text of post5", null);
@@ -35,6 +35,8 @@ public class App {
 		matias.createPost("post9", "This is the text of post9", null);
 		matias.createPost("post10", "This is the text of post10", null);
 		matias.createPost("post11", "This is the text of post11", null);
+		
+		matias.deletePost(post2);
 		
 		TagsManager.getInstance().showTags();	
 		

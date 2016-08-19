@@ -40,15 +40,6 @@ public class Post implements Comparable<Post> {
 		} else {
 			return -1;
 		}
-		/*
-		if (date.compareTo(anotherPost.getDate()) == 0) {
-			return 0;
-		} else if (date.compareTo(anotherPost.getDate()) > 0) {
-			return -1;
-		} else {
-			return 1;
-		}
-		*/
 	}
 	
 	/* *** GETTERS & SETTERS *** */

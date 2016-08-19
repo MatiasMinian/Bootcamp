@@ -14,11 +14,20 @@ public class User {
 		this.username = username;
 	}
 	
-	public void createPost(String title, String text, Set<String> tags) {
+	public Post createPost(String title, String text, Set<String> tags) {
 		Post post = new Post(title, text, tags);
 		posts.add(post);
 		if (tags != null) {
 			addTags(tags);
+		}
+		return post;
+	}
+	
+	public void deletePost(Post post) {
+		if (posts.remove(post)) {
+			System.out.println("Post deleted.");
+		} else {
+			System.out.println("Post wasn't deleted");
 		}
 	}
 	
