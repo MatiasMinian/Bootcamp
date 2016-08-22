@@ -1,8 +1,10 @@
 package com.bootcamp.app;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PostsManager {
 	
@@ -29,6 +31,22 @@ public class PostsManager {
 	
 	public List<Post> recentPosts(int quantity) {
 		return posts.subList(0, quantity);
+	}
+	
+	public List<Post> searchByTag(String tag) {
+		return posts.stream().filter(post -> post.getTags().contains(tag)).collect(Collectors.toList());
+	}
+	
+	public List<Post> searchByText(String text) {
+		return posts.stream().filter(post -> post.getText().contains(text)).collect(Collectors.toList());
+	}
+	
+	public List<Post> searchByUser(User user) {
+		return posts.stream().filter(post -> post.getUser() == user).collect(Collectors.toList());
+	}
+	
+	public List<Post> searchByDate(Calendar dateFrom, Calendar dateTo) {
+		return posts.stream().filter(post -> post.getDate().after(dateFrom) && post.getDate().before(dateTo)).collect(Collectors.toList());
 	}
 	
 	/* *** GETTERS & SETTERS *** */
