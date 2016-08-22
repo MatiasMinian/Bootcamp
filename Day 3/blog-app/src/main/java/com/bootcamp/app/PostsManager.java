@@ -2,6 +2,7 @@ package com.bootcamp.app;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class PostsManager {
 	
 	public Post createPost(String title, String text, Set<String> tags, User user) {
 		Post post = new Post(title, text, tags, user);
-		posts.add(0, post);	
+		posts.add(post);	
 		return post;
 	}
 	
@@ -29,8 +30,43 @@ public class PostsManager {
 		posts.remove(post);
 	}
 	
-	public List<Post> recentPosts(int quantity) {
+	public List<Post> sortByNewest(int quantity) {
+		// quantity == 0 return all posts
+		posts.sort(new Comparator<Post>() {
+
+			@Override
+			public int compare(Post post1, Post post2) {
+				if (post1.getDate().before(post2.getDate())) {
+					return 1;
+				} else if (post1.getDate().after(post2.getDate())) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+		});	
+		if (quantity == 0) {
+			return posts;
+		}
 		return posts.subList(0, quantity);
+	}
+	
+	public List<Post> sortByOldest(int quantity) {
+		// quantity == 0 return all posts
+		posts.sort((post1, post2) -> post1.getDate().compareTo(post2.getDate()));
+		if (quantity == 0) {
+			return posts;
+		}
+		return posts.subList(0, quantity);
+	}
+	
+	public List<Post> sortAlphabeticallyByTitle(int quantity) {
+		// quantity == 0 return all posts
+		posts.sort((post1, post2) -> post1.getTitle().compareTo(post2.getTitle()));
+		if (quantity == 0) {
+			return posts;
+		}
+		return posts.subList(0, quantity);	
 	}
 	
 	public List<Post> searchByTag(String tag) {

@@ -49,8 +49,9 @@ public class App {
 		PostsManager.getInstance().createPost("alejosPost5", "alejosText5", null, alejo);
 		
 		PostsManager.getInstance().deletePost(matiasPost4);
-		PostsManager.getInstance().recentPosts(10).forEach(post -> System.out.println(post.getTitle()));
-		
+		PostsManager.getInstance().sortByOldest(0).forEach(post -> System.out.println(post.getTitle()));		
+		PostsManager.getInstance().sortByNewest(0).forEach(post -> System.out.println(post.getTitle()));
+		PostsManager.getInstance().sortAlphabeticallyByTitle(0).forEach(post -> System.out.println(post.getTitle()));
 		
 		
 	}
