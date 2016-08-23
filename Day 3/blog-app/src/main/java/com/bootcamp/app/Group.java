@@ -5,17 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Group {
 
+	private String name;
 	private List<User> users = new ArrayList<>();
-	private List<Post> posts = new ArrayList<>();
-
-	public void createPost(String title, String text, Set<String> tags, User user) {
-		Post post = new Post(title, text, tags, user);
-		posts.add(0, post);
-		notifyNewPost(post);
+	
+	public Group(String name) {
+		this.setId(name);
 	}
 
 	public void notifyNewPost(Post post) {
@@ -53,11 +50,11 @@ public class Group {
 		this.users = users;
 	}
 
-	public List<Post> getPosts() {
-		return posts;
+	public String getName() {
+		return name;
 	}
 
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
+	public void setId(String name) {
+		this.name = name;
 	}
 }

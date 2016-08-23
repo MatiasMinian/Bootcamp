@@ -3,6 +3,7 @@ package com.bootcamp.app;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ public class PostsManager {
 	private static PostsManager postsManager = null;
 	
 	private List<Post> posts = new ArrayList<>();
+	private HashMap<String, List<Post>> groupPosts = new HashMap<>();
 	
 	public static PostsManager getInstance() {
 		if (postsManager == null) {
@@ -24,6 +26,27 @@ public class PostsManager {
 		Post post = new Post(title, text, tags, user);
 		posts.add(post);	
 		return post;
+	}
+	
+	public Post createPost(String title, String text, Set<String> tags, User user, String groupName) {
+		Post post = new Post(title, text, tags, user);
+		List<Post> posts = groupPosts.get(groupName);
+		if (posts == null) {
+			posts = new ArrayList<>();
+			posts.add(post);
+			groupPosts.put(groupName, posts);
+		} else {
+			posts.add(post);
+		}
+		return post;		
+	}
+	
+	public List<Post> getPostsOfGroup(String groupName) {
+		return groupPosts.get(groupName);
+	}
+	
+	public void deletePostsOfGroup(String groupName) {
+		groupPosts.remove(groupName);
 	}
 	
 	public void deletePost(Post post) {
@@ -93,5 +116,13 @@ public class PostsManager {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public HashMap<String, List<Post>> getGroupPosts() {
+		return groupPosts;
+	}
+
+	public void setGroupPosts(HashMap<String, List<Post>> groupPosts) {
+		this.groupPosts = groupPosts;
 	}
 }
