@@ -20,7 +20,7 @@ public class Group {
 		});
 	}
 
-	public void sendEmail(Post post, User user) {
+	private void sendEmail(Post post, User user) {
 		Mailer.getInstance().sendEmail("New Post", 
 				"Post: " + post.getTitle() + ". Author: " + post.getUser().getUsername(), 
 				user.getEmail());

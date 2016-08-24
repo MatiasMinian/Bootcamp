@@ -8,8 +8,13 @@ import org.junit.Test;
 
 public class GroupTest {
 
+	Group javaGroup = new Group("javaGroup");
+	
+	User matias = new User("matias", "minian.matias@gmail.com");
+	
 	@Before
 	public void setUp() throws Exception {
+		javaGroup.suscribeUser(matias);
 	}
 
 	@After
@@ -17,8 +22,8 @@ public class GroupTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testUserWasAdded() {
+		assertTrue(javaGroup.getUsers().contains(matias));
 	}
 
 }

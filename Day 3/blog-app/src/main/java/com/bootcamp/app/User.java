@@ -1,7 +1,5 @@
 package com.bootcamp.app;
 
-import java.util.Set;
-
 public class User {
 	
 	private String username;
@@ -10,10 +8,6 @@ public class User {
 	public User(String username, String email) {
 		this.username = username;
 		this.setEmail(email);
-	}
-	
-	public void addTags(Set<String> tags) {
-		TagsManager.getInstance().addTags(tags);
 	}
 	
 	/* *** GETTERS & SETTERS *** */

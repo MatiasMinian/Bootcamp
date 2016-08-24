@@ -13,18 +13,18 @@ public class App {
 		
 		Set<String> matiasTags = new HashSet<>();
 		matiasTags.add("Books");
-		matias.addTags(matiasTags);
+		TagsManager.getInstance().addTags(matiasTags);
 		
 		Set<String> pablosTags = new HashSet<>();
 		pablosTags.add("Smartphones");
 		pablosTags.add("Cars");
-		pablo.addTags(pablosTags);
+		TagsManager.getInstance().addTags(pablosTags);
 		
 		Set<String> alejosTags = new HashSet<>();
 		alejosTags.add("Books");
 		alejosTags.add("Cars");
 		alejosTags.add("Sports");
-		alejo.addTags(alejosTags);
+		TagsManager.getInstance().addTags(alejosTags);
 		
 		TagsManager.getInstance().getTags().forEach(tag -> System.out.print(tag + " "));
 		System.out.println();
