@@ -29,11 +29,11 @@ public class App {
 		TagsManager.getInstance().getTags().forEach(tag -> System.out.print(tag + " "));
 		System.out.println();
 		
-		Group javaGroup = new Group();
+		Group javaGroup = new Group("javaGroup");
 		javaGroup.suscribeUser(matias);
 		javaGroup.suscribeUser(pablo);
 		
-		javaGroup.createPost("matiasGroupPost", "groupText", null, matias);
+		PostsManager.getInstance().createPost("matiasGroupPost", "groupText", null, matias, javaGroup.getName());
 		
 		PostsManager.getInstance().createPost("matiasPost1", "matiasText1", null, matias);
 		PostsManager.getInstance().createPost("matiasPost2", "matiasText2", null, matias);
