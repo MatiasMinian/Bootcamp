@@ -17,11 +17,10 @@ public class PostsManagerTest {
 	User federico = new User("federico", "federico@gmail.com");
 	User alejo = new User("alejo", "alejo@gmail.com");
 	
-	Post matiasPost1;
-	Post federicosPost1;
-	Post alejosPost2;
-	List<Post> sportsPosts = new ArrayList<>();
-
+	Post matiasPost1, matiasPost2, matiasPost3;
+	Post federicosPost1, federicosPost2, federicosPost3;
+	Post alejosPost1, alejosPost2, alejosPost3;
+	
 	@Before
 	public void setUp() throws Exception {
 		
@@ -39,18 +38,14 @@ public class PostsManagerTest {
 		someTags.add("books");
 		
 		matiasPost1 = matias.createPost("matiasPost1", "matiasText1", tags);
-		matias.createPost("matiasPost2", "matiasText2", someTags);
-		matias.createPost("matiasPost3", "matiasText3", null);
+		matiasPost2 = matias.createPost("matiasPost2", "matiasText2", someTags);
+		matiasPost3 = matias.createPost("matiasPost3", "matiasText3", null);
 		federicosPost1 = federico.createPost("federicosPost1", "federicosText1", tags);
-		federico.createPost("federicosPost2", "federicosText2", someTags);
-		federico.createPost("federicosPost3", "federicosText3", someTags);
-		alejo.createPost("alejosPost1", "alejosText1", null);
+		federicosPost2 = federico.createPost("federicosPost2", "federicosText2", someTags);
+		federicosPost3 = federico.createPost("federicosPost3", "federicosText3", someTags);
+		alejosPost1 = alejo.createPost("alejosPost1", "alejosText1", null);
 		alejosPost2 = alejo.createPost("alejosPost2", "alejosText2", sportsTags);
-		alejo.createPost("alejosPost3", "alejosText3", someTags);
-		
-		sportsPosts.add(matiasPost1);
-		sportsPosts.add(federicosPost1);
-		sportsPosts.add(alejosPost2);
+		alejosPost3 = alejo.createPost("alejosPost3", "alejosText3", someTags);
 	}
 
 	@After
@@ -64,8 +59,51 @@ public class PostsManagerTest {
 	}
 
 	@Test
-	public void testSearchByTagReturnsPostsWithThatTag() {
+	public void testSearchByTag() {
+		List<Post> sportsPosts = new ArrayList<>();
+		sportsPosts.add(matiasPost1);
+		sportsPosts.add(federicosPost1);
+		sportsPosts.add(alejosPost2);
+		
 		List<Post> posts = PostsManager.getInstance().searchByTag("sports");
 		assertTrue(sportsPosts.containsAll(posts));
+	}
+	
+	@Test
+	public void testSortByLikes() {
+		matiasPost2.addLike(alejo);
+		federicosPost1.addLike(matias);
+		federicosPost1.addLike(alejo);
+		
+		List<Post> expectedPosts = new ArrayList<>();
+		expectedPosts.add(federicosPost1);
+		expectedPosts.add(matiasPost2);
+		expectedPosts.add(matiasPost1);		
+		expectedPosts.add(matiasPost3);
+		expectedPosts.add(federicosPost2);
+		expectedPosts.add(federicosPost3);
+		expectedPosts.add(alejosPost1);
+		expectedPosts.add(alejosPost2);
+		expectedPosts.add(alejosPost3);
+		
+		List<Post> posts = PostsManager.getInstance().sortByLikes(0, false);
+		assertTrue(expectedPosts.equals(posts));
+	}
+	
+	@Test
+	public void testSortAlphabeticallyByTitle() {
+		List<Post> expectedPosts = new ArrayList<>();
+		expectedPosts.add(alejosPost1);
+		expectedPosts.add(alejosPost2);
+		expectedPosts.add(alejosPost3);
+		expectedPosts.add(federicosPost1);
+		expectedPosts.add(federicosPost2);
+		expectedPosts.add(federicosPost3);
+		expectedPosts.add(matiasPost1);
+		expectedPosts.add(matiasPost2);
+		expectedPosts.add(matiasPost3);
+		
+		List<Post> posts = PostsManager.getInstance().sortAlphabeticallyByTitle(0, false);
+		assertTrue(expectedPosts.equals(posts));
 	}
 }

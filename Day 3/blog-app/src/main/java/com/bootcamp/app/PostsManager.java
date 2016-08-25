@@ -2,6 +2,7 @@ package com.bootcamp.app;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class PostsManager {
 		posts.remove(post);
 	}
 	
-	public List<Post> sortByNewest(int quantity) {
+	public List<Post> sortByNewest(int quantity, boolean reverse) {
 		// quantity == 0 return all posts
 		posts.sort(new Comparator<Post>() {
 
@@ -47,29 +48,37 @@ public class PostsManager {
 					return 0;
 				}
 			}
-		});	
+		});
+		if (reverse) {
+			Collections.reverse(posts);
+		}
 		if (quantity == 0) {
 			return posts;
 		}
 		return posts.subList(0, quantity);
 	}
 	
-	public List<Post> sortByOldest(int quantity) {
-		// quantity == 0 return all posts
-		posts.sort((post1, post2) -> post1.getDate().compareTo(post2.getDate()));
-		if (quantity == 0) {
-			return posts;
-		}
-		return posts.subList(0, quantity);
-	}
-	
-	public List<Post> sortAlphabeticallyByTitle(int quantity) {
+	public List<Post> sortAlphabeticallyByTitle(int quantity, boolean reverse) {
 		// quantity == 0 return all posts
 		posts.sort((post1, post2) -> post1.getTitle().compareTo(post2.getTitle()));
+		if (reverse) {
+			Collections.reverse(posts);
+		}
 		if (quantity == 0) {
 			return posts;
 		}
 		return posts.subList(0, quantity);	
+	}
+	
+	public List<Post> sortByLikes(int quantity, boolean reverse) {
+		posts.sort((post1, post2) -> post2.getLikes().size() - post1.getLikes().size());
+		if (reverse) {
+			Collections.reverse(posts);
+		}
+		if (quantity == 0) {
+			return posts;
+		}
+		return posts.subList(0, quantity);		
 	}
 	
 	public List<Post> searchByTag(String tag) {

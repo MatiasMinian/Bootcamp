@@ -1,7 +1,9 @@
 package com.bootcamp.app;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Post {
@@ -11,6 +13,7 @@ public class Post {
 	private Calendar date = Calendar.getInstance();
 	private Set<String> tags = new HashSet<>();
 	private User user;
+	private List<User> likes = new ArrayList<>();
 	
 	public Post(String title, String text, Set<String> tags, User user) {
 		this.title = title;
@@ -19,6 +22,11 @@ public class Post {
 			tags.addAll(tags);
 		}
 		this.user = user;
+	}
+	
+	public void addLike(User user) {
+		likes.add(user);
+		
 	}
 	
 	/* *** GETTERS & SETTERS *** */
@@ -52,5 +60,13 @@ public class Post {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<User> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(List<User> likes) {
+		this.likes = likes;
 	}
 }
