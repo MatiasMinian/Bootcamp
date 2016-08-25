@@ -7,6 +7,7 @@ public class App {
 	
 	public static void main(String[] args) {
 		
+		/*
 		User matias = new User("matias", "matias@gmail.com");
 		User pablo = new User("pablo", "pablo@gmail.com");
 		User alejo = new User("alejo", "alejo@gmail.com");
@@ -33,7 +34,7 @@ public class App {
 		javaGroup.suscribeUser(matias);
 		javaGroup.suscribeUser(pablo);
 		
-		PostsManager.getInstance().createPost("matiasGroupPost", "groupText", null, matias, javaGroup.getName());
+		PostsManager.getInstance().createPost("matiasGroupPost", "groupText", null, matias, javaGroup);
 		
 		PostsManager.getInstance().createPost("matiasPost1", "matiasText1", null, matias);
 		PostsManager.getInstance().createPost("matiasPost2", "matiasText2", null, matias);
@@ -52,7 +53,7 @@ public class App {
 		PostsManager.getInstance().sortByOldest(0).forEach(post -> System.out.println(post.getTitle()));		
 		PostsManager.getInstance().sortByNewest(0).forEach(post -> System.out.println(post.getTitle()));
 		PostsManager.getInstance().sortAlphabeticallyByTitle(0).forEach(post -> System.out.println(post.getTitle()));
-		
+		*/
 		
 	}
 }

@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PostsManager {
@@ -20,25 +19,6 @@ public class PostsManager {
 			postsManager = new PostsManager();
 		}
 		return postsManager;
-	}
-	
-	public Post createPost(String title, String text, Set<String> tags, User user) {
-		Post post = new Post(title, text, tags, user);
-		posts.add(post);	
-		return post;
-	}
-	
-	public Post createPost(String title, String text, Set<String> tags, User user, String groupName) {
-		Post post = new Post(title, text, tags, user);
-		List<Post> posts = groupPosts.get(groupName);
-		if (posts == null) {
-			posts = new ArrayList<>();
-			posts.add(post);
-			groupPosts.put(groupName, posts);
-		} else {
-			posts.add(post);
-		}
-		return post;		
 	}
 	
 	public List<Post> getPostsOfGroup(String groupName) {
@@ -109,6 +89,21 @@ public class PostsManager {
 	}
 	
 	/* *** GETTERS & SETTERS *** */
+	
+	public void addPost(Post post) {
+		posts.add(post);
+	}
+	
+	public void addGroupPost(Post post, String groupName) {
+		List<Post> posts = groupPosts.get(groupName);
+		if (posts == null) {
+			posts = new ArrayList<>();
+			posts.add(post);
+			groupPosts.put(groupName, posts);
+		} else {
+			posts.add(post);
+		}
+	}
 	
 	public List<Post> getPosts() {
 		return posts;
