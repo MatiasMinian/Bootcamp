@@ -14,7 +14,7 @@ public class GroupTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		javaGroup.suscribeUser(matias);
+		javaGroup.subscribeUser(matias);
 	}
 
 	@After
@@ -23,7 +23,7 @@ public class GroupTest {
 
 	@Test
 	public void testUserWasAdded() {
-		assertTrue(javaGroup.getUsers().contains(matias));
+		assertTrue(javaGroup.getSubsManager().getSubscribers().contains(matias));
 	}
 
 }

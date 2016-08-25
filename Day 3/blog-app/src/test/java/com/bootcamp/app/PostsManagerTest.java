@@ -38,15 +38,15 @@ public class PostsManagerTest {
 		someTags.add("cars");
 		someTags.add("books");
 		
-		matiasPost1 = PostsManager.getInstance().createPost("matiasPost1", "matiasText1", tags, matias);
-		PostsManager.getInstance().createPost("matiasPost2", "matiasText2", someTags, matias);
-		PostsManager.getInstance().createPost("matiasPost3", "matiasText3", null, matias);
-		federicosPost1 = PostsManager.getInstance().createPost("federicosPost1", "federicosText1", tags, federico);
-		PostsManager.getInstance().createPost("federicosPost2", "federicosText2", someTags, federico);
-		PostsManager.getInstance().createPost("federicosPost3", "federicosText3", someTags, federico);
-		PostsManager.getInstance().createPost("alejosPost1", "alejosText1", null, alejo);
-		alejosPost2 = PostsManager.getInstance().createPost("alejosPost2", "alejosText2", sportsTags, alejo);
-		PostsManager.getInstance().createPost("alejosPost3", "alejosText3", someTags, alejo);
+		matiasPost1 = matias.createPost("matiasPost1", "matiasText1", tags);
+		matias.createPost("matiasPost2", "matiasText2", someTags);
+		matias.createPost("matiasPost3", "matiasText3", null);
+		federicosPost1 = federico.createPost("federicosPost1", "federicosText1", tags);
+		federico.createPost("federicosPost2", "federicosText2", someTags);
+		federico.createPost("federicosPost3", "federicosText3", someTags);
+		alejo.createPost("alejosPost1", "alejosText1", null);
+		alejosPost2 = alejo.createPost("alejosPost2", "alejosText2", sportsTags);
+		alejo.createPost("alejosPost3", "alejosText3", someTags);
 		
 		sportsPosts.add(matiasPost1);
 		sportsPosts.add(federicosPost1);
