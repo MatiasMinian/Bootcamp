@@ -3,7 +3,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.bootcamp.app</groupId>
   <artifactId>blog-app</artifactId>
-  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>blog-app</name>
   <url>http://maven.apache.org</url>
@@ -17,6 +16,29 @@
     	<groupId>org.mockito</groupId>
     	<artifactId>mockito-core</artifactId>
     	<version>2.0.107-beta</version>
+    </dependency>
+    <dependency>
+    	<groupId>info.cukes</groupId>
+    	<artifactId>cucumber-java8</artifactId>
+    	<version>1.2.4</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>info.cukes</groupId>
+    	<artifactId>cucumber-junit</artifactId>
+    	<version>1.2.4</version>
+    	<scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.seleniumhq.selenium</groupId>
+    	<artifactId>selenium-java</artifactId>
+    	<version>3.0.0-beta2</version>
+    </dependency>
+    <dependency>
+    	<groupId>info.cukes</groupId>
+    	<artifactId>cucumber-java</artifactId>
+    	<version>1.2.4</version>
+    	<scope>test</scope>
     </dependency>
   </dependencies>
 </project>
