@@ -3,17 +3,12 @@ package com.bootcamp.app;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
 	public static void main(String[] args) {
@@ -92,8 +87,30 @@ public class App {
 				}
 				break;
 			case 2:
+				System.out.println("Supplier Id: ");
+				int supId = scanner.nextInt();
+				System.out.println("Supplier Name: ");
+				String supName = scanner.next();
+				System.out.println("Supplier Address: ");
+				String supAddress = scanner.next();
+				try {
+					statement.executeUpdate("update bootcamp_suppliers.suppliers set sname = " + supName + ", address = " + supAddress + " where sid = " + supId);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 3:
+				System.out.println("Part Id: ");
+				int partId = scanner.nextInt();
+				System.out.println("Part Name: ");
+				String partName = scanner.next();
+				System.out.println("Part color: ");
+				String partColor = scanner.next();
+				try {
+					statement.executeUpdate("update bootcamp_suppliers.parts set pname = " + partName + ", color = " + partColor + " where pid = " + partId);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				break;
 			default:
 				break loop;
