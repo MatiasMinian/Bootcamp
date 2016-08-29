@@ -40,5 +40,10 @@
     	<version>1.2.4</version>
     	<scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>org.hibernate</groupId>
+    	<artifactId>hibernate-entitymanager</artifactId>
+    	<version>5.2.2.Final</version>
+    </dependency>
   </dependencies>
 </project>
