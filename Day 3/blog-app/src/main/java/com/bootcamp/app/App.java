@@ -1,17 +1,16 @@
 package com.bootcamp.app;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import com.bootcamp.app.persistance.HibernateUtil;
 
 public class App {
 	
 	public static void main(String[] args) {
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
-		transaction = session.beginTransaction();
+		
+		HibernateUtil.beginTransaction();
+		//Session session = HibernateUtil.getSessionFactory().openSession();
+		//Transaction transaction = null;
+		//transaction = session.beginTransaction();
 		
 		User matias = new User("matias", "matias@gmail.com");
 		User alejo = new User("alejo", "alejo@gmail.com");
@@ -30,25 +29,36 @@ public class App {
 		
 		matiasPost.addLike(alejo);
 		
-		session.save(books);
-		session.save(sports);
-		session.save(cars);
+		HibernateUtil.getSession().save(books);
+		HibernateUtil.getSession().save(sports);
+		HibernateUtil.getSession().save(cars);
+		//session.save(books);
+		//session.save(sports);
+		//session.save(cars);
 		
-		session.save(utn);
+		HibernateUtil.getSession().save(utn);
+		//session.save(utn);
 		
-		session.save(matias);
-		session.save(alejo);
+		HibernateUtil.getSession().save(matias);
+		HibernateUtil.getSession().save(alejo);
+		//session.save(matias);
+		//session.save(alejo);
 		
-		session.save(matiasPost);
-		session.save(alejosPost);
+		HibernateUtil.getSession().save(matiasPost);
+		HibernateUtil.getSession().save(alejosPost);
+		//session.save(matiasPost);
+		//session.save(alejosPost);
 		
 		alejosPost.addLike(matias);
-		session.update(alejosPost);
+		HibernateUtil.getSession().saveOrUpdate(alejosPost);
+		//session.update(alejosPost);
 		
 		//session.delete(matias);
 		
-		transaction.commit();
-		session.close();
+		HibernateUtil.commitTransaction();
+		//transaction.commit();
+		HibernateUtil.closeSession();
+		//session.close();
 		
 		
 		/*
