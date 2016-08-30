@@ -14,7 +14,7 @@ public class Tag {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "name")
+	@Column(name = "name", unique = true, nullable = false)
 	String name;
 	
 	public Tag(){}

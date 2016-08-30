@@ -17,10 +17,10 @@ public class User {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "username")
+	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 	
-	@Column(name = "email")
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	
 	@Transient
