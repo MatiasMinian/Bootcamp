@@ -30,6 +30,12 @@
 
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
+        
+        <!-- The mapping information of entities -->
+        <mapping class="com.bootcamp.app.User"/>
+        <mapping class="com.bootcamp.app.Tag"/>
+        <mapping class="com.bootcamp.app.Post"/>
+        <mapping class="com.bootcamp.app.Group"/>       
 
     </session-factory>
 

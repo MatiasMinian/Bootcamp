@@ -7,7 +7,7 @@ public class TagsManager {
 
 	private static TagsManager tagsManager = null;
 
-	private Set<String> tags = new HashSet<>();
+	private Set<Tag> tags = new HashSet<>();
 
 	public static TagsManager getInstance() {
 		if (tagsManager == null) {
@@ -18,17 +18,17 @@ public class TagsManager {
 
 	/* *** GETTERS & SETTERS *** */
 
-	public void addTags(Set<String> tags) {
+	public void addTags(Set<Tag> tags) {
 		if (tags != null) {
 			this.tags.addAll(tags);
 		}
 	}
 
-	public Set<String> getTags() {
+	public Set<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(Set<String> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
 }

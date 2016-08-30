@@ -11,11 +11,11 @@ public class Post {
 	private String title;
 	private String text;
 	private Calendar date = Calendar.getInstance();
-	private Set<String> tags = new HashSet<>();
+	private Set<Tag> tags = new HashSet<>();
 	private User user;
 	private List<User> likes = new ArrayList<>();
 	
-	public Post(String title, String text, Set<String> tags, User user) {
+	public Post(String title, String text, Set<Tag> tags, User user) {
 		this.title = title;
 		this.text = text;
 		if (tags != null) {
@@ -49,10 +49,10 @@ public class Post {
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
-	public Set<String> getTags() {
+	public Set<Tag> getTags() {
 		return tags;
 	}
-	public void setTags(Set<String> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
 	public User getUser() {

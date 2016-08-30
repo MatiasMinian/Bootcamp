@@ -17,18 +17,18 @@ public class User {
 		subscriptionsManager.subscribeUser(user);
 	}
 	
-	public void addTags(Set<String> tags) {
+	public void addTags(Set<Tag> tags) {
 		TagsManager.getInstance().addTags(tags);
 	}
 	
-	public Post createPost(String title, String text, Set<String> tags) {
+	public Post createPost(String title, String text, Set<Tag> tags) {
 		Post post = new Post(title, text, tags, this);
 		PostsManager.getInstance().addPost(post);
 		subscriptionsManager.notifyNewPost(post);
 		return post;
 	}
 	
-	public Post createPost(String title, String text, Set<String> tags, Group group) {
+	public Post createPost(String title, String text, Set<Tag> tags, Group group) {
 		Post post = new Post(title, text, tags, this);
 		PostsManager.getInstance().addGroupPost(post, group.getName());
 		// TODO Notify post created to subscribers	

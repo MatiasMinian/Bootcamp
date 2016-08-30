@@ -24,18 +24,18 @@ public class PostsManagerTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		Set<String> tags = new HashSet<>();
-		tags.add("sports");
-		tags.add("cars");
-		tags.add("books");
+		Set<Tag> tags = new HashSet<>();
+		tags.add(new Tag("sports"));
+		tags.add(new Tag("cars"));
+		tags.add(new Tag("books"));
 		TagsManager.getInstance().addTags(tags);
 		
-		Set<String> sportsTags = new HashSet<>();
-		sportsTags.add("sports");
+		Set<Tag> sportsTags = new HashSet<>();
+		sportsTags.add(new Tag("sports"));
 		
-		Set<String> someTags = new HashSet<>();
-		someTags.add("cars");
-		someTags.add("books");
+		Set<Tag> someTags = new HashSet<>();
+		someTags.add(new Tag("cars"));
+		someTags.add(new Tag("books"));
 		
 		matiasPost1 = matias.createPost("matiasPost1", "matiasText1", tags);
 		matiasPost2 = matias.createPost("matiasPost2", "matiasText2", someTags);
@@ -50,6 +50,7 @@ public class PostsManagerTest {
 
 	@After
 	public void tearDown() throws Exception {
+		PostsManager.getInstance().getPosts().clear();		
 	}
 	
 	@Test
