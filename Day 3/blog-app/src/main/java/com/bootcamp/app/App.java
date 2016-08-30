@@ -1,11 +1,26 @@
 package com.bootcamp.app;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.bootcamp.app.persistance.HibernateUtil;
 
 public class App {
 	
 	public static void main(String[] args) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction transaction = null;
+		transaction = session.beginTransaction();
+		
+		User matias = new User("matias", "matias@gmail.com");
+		session.save(matias);
+		Tag sports = new Tag("sports");
+		session.save(sports);
+		
+		transaction.commit();
+		session.close();
+		
 		
 		/*
 		User matias = new User("matias", "matias@gmail.com");

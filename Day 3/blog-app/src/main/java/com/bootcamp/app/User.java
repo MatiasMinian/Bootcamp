@@ -2,11 +2,31 @@ package com.bootcamp.app;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "USERS")
 public class User {
 	
+	@Id @GeneratedValue
+	@Column(name = "id")
+	private int id;
+	
+	@Column(name = "username")
 	private String username;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Transient
 	private SubscriptionsManager subscriptionsManager = new SubscriptionsManager();
+	
+	public User(){}
 	
 	public User(String username, String email) {
 		this.username = username;
@@ -37,9 +57,17 @@ public class User {
 	
 	/* *** GETTERS & SETTERS *** */
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getUsername() {
 		return username;
-	}
+	}	
 
 	public void setUsername(String username) {
 		this.username = username;
