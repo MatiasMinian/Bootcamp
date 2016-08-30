@@ -25,6 +25,10 @@ public class Tag {
 	
 	/* *** GETTERS & SETTERS *** */
 	
+	public int getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}
