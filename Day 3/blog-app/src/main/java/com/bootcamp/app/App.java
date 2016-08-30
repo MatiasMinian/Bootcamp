@@ -14,9 +14,38 @@ public class App {
 		transaction = session.beginTransaction();
 		
 		User matias = new User("matias", "matias@gmail.com");
-		session.save(matias);
+		User alejo = new User("alejo", "alejo@gmail.com");
+		
+		Group utn = new Group("utn");
+		
 		Tag sports = new Tag("sports");
+		Tag books = new Tag("books");
+		Tag cars = new Tag("cars");
+		
+		Post matiasPost = matias.createPost("matiasPost1", "matiasText1", null, utn);
+		matiasPost.getTags().add(sports);
+		matiasPost.getTags().add(books);
+		Post alejosPost = alejo.createPost("alejosPost1", "alejosText1", null);
+		alejosPost.getTags().add(cars);
+		
+		matiasPost.addLike(alejo);
+		
+		session.save(books);
 		session.save(sports);
+		session.save(cars);
+		
+		session.save(utn);
+		
+		session.save(matias);
+		session.save(alejo);
+		
+		session.save(matiasPost);
+		session.save(alejosPost);
+		
+		alejosPost.addLike(matias);
+		session.update(alejosPost);
+		
+		//session.delete(matias);
 		
 		transaction.commit();
 		session.close();

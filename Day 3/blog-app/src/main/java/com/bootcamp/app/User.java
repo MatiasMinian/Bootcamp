@@ -23,8 +23,13 @@ public class User {
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	
+	// TODO How to implement the subscribers and persist them
 	@Transient
 	private SubscriptionsManager subscriptionsManager = new SubscriptionsManager();
+	
+	/*
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Post> myPosts = new ArrayList<>();*/
 	
 	public User(){}
 	
@@ -49,7 +54,7 @@ public class User {
 	}
 	
 	public Post createPost(String title, String text, Set<Tag> tags, Group group) {
-		Post post = new Post(title, text, tags, this);
+		Post post = new Post(title, text, tags, this, group);
 		PostsManager.getInstance().addGroupPost(post, group.getName());
 		// TODO Notify post created to subscribers	
 		return post;		
@@ -84,4 +89,14 @@ public class User {
 	public void setSubscriptionsManager(SubscriptionsManager subscriptionsManager) {
 		this.subscriptionsManager = subscriptionsManager;
 	}
+
+	/*
+	public List<Post> getMyPosts() {
+		return myPosts;
+	}
+
+	public void setMyPosts(List<Post> myPosts) {
+		this.myPosts = myPosts;
+	}
+	*/
 }
