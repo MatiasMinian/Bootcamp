@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import com.bootcamp.app.persistance.HibernateUtil;
 
@@ -20,8 +19,9 @@ public abstract class GenericDAO<T, PK extends Serializable> {
         return HibernateUtil.getSession();
     }
 	
-	public PK save(T entity) {
-		return (PK) getSession().save(entity);		
+	public T save(T entity) {
+		getSession().save(entity);	
+		return entity;
 	}
 	
 	public T read(PK id) {
@@ -35,23 +35,12 @@ public abstract class GenericDAO<T, PK extends Serializable> {
     public void delete(T entity) {
         getSession().delete(entity);
     } 
-	
+    
+    public T findById(PK id) {
+    	return (T) getSession().get(type, id);
+    }
+    
 	/*
-    public void save(T entity) {
-        Session hibernateSession = this.getSession();
-        hibernateSession.saveOrUpdate(entity);
-    }
- 
-    public void merge(T entity) {
-        Session hibernateSession = this.getSession();
-        hibernateSession.merge(entity);
-    }
- 
-    public void delete(T entity) {
-        Session hibernateSession = this.getSession();
-        hibernateSession.delete(entity);
-    }
- 
     public List<T> findMany(Query query) {
         List<T> t;
         t = (List<T>) query.list();
@@ -61,13 +50,6 @@ public abstract class GenericDAO<T, PK extends Serializable> {
     public T findOne(Query query) {
         T t;
         t = (T) query.uniqueResult();
-        return t;
-    }
- 
-    public T findByID(Class clazz, ID id) {
-        Session hibernateSession = this.getSession();
-        T t = null;
-        t = (T) hibernateSession.get(clazz, id);
         return t;
     }
  

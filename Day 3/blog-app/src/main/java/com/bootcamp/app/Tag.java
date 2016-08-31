@@ -12,7 +12,7 @@ public class Tag {
 	
 	@Id @GeneratedValue
 	@Column(name = "id")
-	private int id;
+	private Long id;
 	
 	@Column(name = "name", unique = true, nullable = false)
 	String name;
@@ -25,7 +25,7 @@ public class Tag {
 	
 	/* *** GETTERS & SETTERS *** */
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	

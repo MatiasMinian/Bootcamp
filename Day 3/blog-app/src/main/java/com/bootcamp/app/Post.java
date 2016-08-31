@@ -25,7 +25,7 @@ public class Post {
 	
 	@Id @GeneratedValue
 	@Column(name = "id")
-	private int id;
+	private Long id;
 	
 	@Column(name = "title", nullable = false)
 	private String title;
@@ -81,7 +81,7 @@ public class Post {
 	
 	/* *** GETTERS & SETTERS *** */
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	

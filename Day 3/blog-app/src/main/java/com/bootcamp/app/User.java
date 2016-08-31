@@ -18,8 +18,6 @@ public class User extends Subscribable {
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 	
-	// TODO How to implement the subscribers and persist them
-	
 	/*
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	private List<Post> myPosts = new ArrayList<>();*/

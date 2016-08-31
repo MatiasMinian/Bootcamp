@@ -22,7 +22,7 @@ public abstract class Subscribable {
 	
 	@Id @GeneratedValue
 	@Column(name = "id")
-	private int id;
+	private Long id;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "SUBSCRIPTIONS", joinColumns = @JoinColumn(name = "subscribable_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
@@ -48,7 +48,7 @@ public abstract class Subscribable {
 	
 	/* *** GETTERS & SETTERS *** */
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 

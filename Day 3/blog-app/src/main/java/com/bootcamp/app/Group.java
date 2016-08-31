@@ -13,8 +13,6 @@ public class Group extends Subscribable {
 	@Column(name = "name", unique = true)
 	private String name;
 	
-	// TODO How to implement the subscribers and persist them
-	
 	public Group(){}
 	
 	public Group(String name) {
