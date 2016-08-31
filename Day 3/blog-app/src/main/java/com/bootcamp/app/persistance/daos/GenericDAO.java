@@ -3,11 +3,13 @@ package com.bootcamp.app.persistance.daos;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 
 import com.bootcamp.app.persistance.HibernateUtil;
 
-public abstract class GenericDAO<T, PK extends Serializable> {
+public class GenericDAO<T, PK extends Serializable> {
 	
 	private Class<T> type;
 	
@@ -28,8 +30,9 @@ public abstract class GenericDAO<T, PK extends Serializable> {
         return (T) getSession().get(type, id);
     }
 	
-	public void update(T entity) {
+	public T update(T entity) {
         getSession().update(entity);
+        return entity;
     }
  
     public void delete(T entity) {
@@ -40,25 +43,22 @@ public abstract class GenericDAO<T, PK extends Serializable> {
     	return (T) getSession().get(type, id);
     }
     
-	/*
-    public List<T> findMany(Query query) {
-        List<T> t;
-        t = (List<T>) query.list();
-        return t;
-    }
- 
-    public T findOne(Query query) {
+    @SuppressWarnings("unchecked")
+	public T findOne(Query query) {
         T t;
-        t = (T) query.uniqueResult();
+        t = (T) query.getSingleResult();
         return t;
     }
- 
-    public List findAll(Class clazz) {
-        Session hibernateSession = this.getSession();
-        List T = null;
-        Query query = hibernateSession.createQuery("from " + clazz.getName());
-        T = query.list();
-        return T;
+    
+    @SuppressWarnings("unchecked")
+	public List<T> findMany(Query query) {
+    	List<T> t;
+        t = (List<T>) query.getResultList();
+        return t;    	
     }
-    */
+    
+    @SuppressWarnings({ "deprecation", "unchecked" })
+	public List<T> findAll() {
+		return getSession().createCriteria(type).list();
+	}
 }
