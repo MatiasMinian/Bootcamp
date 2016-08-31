@@ -2,20 +2,15 @@ package com.bootcamp.app;
 
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USERS")
-public class User {
-	
-	@Id @GeneratedValue
-	@Column(name = "id")
-	private int id;
+@AttributeOverride(name = "id", column = @Column(name = "id"))
+public class User extends Subscribable {
 	
 	@Column(name = "username", unique = true, nullable = false)
 	private String username;
@@ -24,8 +19,6 @@ public class User {
 	private String email;
 	
 	// TODO How to implement the subscribers and persist them
-	@Transient
-	private SubscriptionsManager subscriptionsManager = new SubscriptionsManager();
 	
 	/*
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
@@ -38,10 +31,6 @@ public class User {
 		this.setEmail(email);
 	}
 	
-	public void subscribeUser(User user) {
-		subscriptionsManager.subscribeUser(user);
-	}
-	
 	public void addTags(Set<Tag> tags) {
 		TagsManager.getInstance().addTags(tags);
 	}
@@ -49,22 +38,18 @@ public class User {
 	public Post createPost(String title, String text, Set<Tag> tags) {
 		Post post = new Post(title, text, tags, this);
 		PostsManager.getInstance().addPost(post);
-		subscriptionsManager.notifyNewPost(post);
+		notifyNewPost(post);
 		return post;
 	}
 	
 	public Post createPost(String title, String text, Set<Tag> tags, Group group) {
 		Post post = new Post(title, text, tags, this, group);
 		PostsManager.getInstance().addGroupPost(post, group.getName());
-		// TODO Notify post created to subscribers	
+		group.notifyNewPost(post);
 		return post;		
 	}	
 	
 	/* *** GETTERS & SETTERS *** */
-	
-	public int getId() {
-		return id;
-	}
 	
 	public String getUsername() {
 		return username;
@@ -80,14 +65,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public SubscriptionsManager getSubscriptionsManager() {
-		return subscriptionsManager;
-	}
-
-	public void setSubscriptionsManager(SubscriptionsManager subscriptionsManager) {
-		this.subscriptionsManager = subscriptionsManager;
 	}
 
 	/*

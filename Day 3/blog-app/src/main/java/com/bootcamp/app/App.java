@@ -29,6 +29,9 @@ public class App {
 		
 		matiasPost.addLike(alejo);
 		
+		utn.subscribeUser(matias);
+		matias.subscribeUser(alejo);
+		
 		HibernateUtil.getSession().save(books);
 		HibernateUtil.getSession().save(sports);
 		HibernateUtil.getSession().save(cars);

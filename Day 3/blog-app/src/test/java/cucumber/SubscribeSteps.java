@@ -15,13 +15,9 @@ public class SubscribeSteps {
 	User pablo;
 	
 	@Given("^a user and a blogger$")
-	public void newUserAndBlogger(String name, String email) {
+	public void newUserAndBlogger() {
 		matias = new User("matias", "matias@gmail.com");
 		pablo = new User("pablo", "pablo@gmail.com");
-	} 
-	@And("^a blogger$")
-	public void newBlogger(String name, String email) {
-		pablo = new User(name, email);
 	}
 	
 	@When("^the user subscribes to the blogger$")
@@ -31,6 +27,6 @@ public class SubscribeSteps {
 	
 	@Then("^the blogger has a new subscriber$")
 	public void verifyBloggerHasNewSubscriber() {
-		assertTrue(pablo.getSubscriptionsManager().getSubscribers().contains(matias));
+		assertTrue(pablo.getSubscribers().contains(matias));
 	}
 }

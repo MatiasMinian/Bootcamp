@@ -36,6 +36,7 @@
         <mapping class="com.bootcamp.app.Tag"/>
         <mapping class="com.bootcamp.app.Post"/>
         <mapping class="com.bootcamp.app.Group"/>
+        <mapping class="com.bootcamp.app.Subscribable"/>
 
     </session-factory>
 

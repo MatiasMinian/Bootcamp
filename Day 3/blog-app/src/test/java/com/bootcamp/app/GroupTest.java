@@ -23,7 +23,7 @@ public class GroupTest {
 
 	@Test
 	public void testUserWasAdded() {
-		assertTrue(javaGroup.getSubscriptionsManager().getSubscribers().contains(matias));
+		assertTrue(javaGroup.getSubscribers().contains(matias));
 	}
 
 }

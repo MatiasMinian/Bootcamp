@@ -28,12 +28,12 @@ public abstract class GenericDAO<T, PK extends Serializable> {
         return (T) getSession().get(type, id);
     }
 	
-	public void update(T o) {
-        getSession().update(o);
+	public void update(T entity) {
+        getSession().update(entity);
     }
  
-    public void delete(T o) {
-        getSession().delete(o);
+    public void delete(T entity) {
+        getSession().delete(entity);
     } 
 	
 	/*
