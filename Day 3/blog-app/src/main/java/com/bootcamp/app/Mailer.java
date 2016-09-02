@@ -6,14 +6,11 @@ import java.io.IOException;
 
 public class Mailer {
 	
-	private static Mailer mailer = null;
+	/* *** CONSTRUCTORS *** */
 	
-	public static Mailer getInstance() {
-		if (mailer == null) {
-			mailer = new Mailer();
-		}
-		return mailer;
-	}
+	public Mailer(){}
+	
+	/* *** METHODS *** */
 	
 	public boolean sendEmail(String title, String body, String email) {
 		String filename = email + ".txt";

@@ -12,14 +12,16 @@ public class SubscriptionsService {
 
 	private UserManager userManager;
 	private GroupManager groupManager;
+	private Mailer mailer;
 	
 	/* *** CONSTRUCTORS *** */
 	
 	public SubscriptionsService(){}
 	
-	public SubscriptionsService(UserManager userManager, GroupManager groupManager) {
+	public SubscriptionsService(UserManager userManager, GroupManager groupManager, Mailer mailer) {
 		this.userManager = userManager;
 		this.groupManager = groupManager;		
+		this.mailer = mailer;
 	}
 	
 	/* *** METHODS *** */
@@ -48,7 +50,7 @@ public class SubscriptionsService {
 	}
 	
 	private void sendEmail(Post post, User user) {
-		Mailer.getInstance().sendEmail("New Post", 
+		mailer.sendEmail("New Post", 
 				"Post: " + post.getTitle() + ". Author: " + post.getUser().getUsername(), 
 				user.getEmail());
 	}
@@ -69,5 +71,13 @@ public class SubscriptionsService {
 
 	public void setGroupManager(GroupManager groupManager) {
 		this.groupManager = groupManager;
-	}	
+	}
+
+	public Mailer getMailer() {
+		return mailer;
+	}
+
+	public void setMailer(Mailer mailer) {
+		this.mailer = mailer;
+	}
 }

@@ -60,8 +60,13 @@ public class BlogAppConfig {
 	}
 	
 	@Bean
+	public Mailer Mailer() {
+		return new Mailer();
+	}
+	
+	@Bean
 	public SubscriptionsService subscriptionsService() {
-		return new SubscriptionsService(userManager(), groupManager());		
+		return new SubscriptionsService(userManager(), groupManager(), Mailer());		
 	}
 	
 	@Bean
