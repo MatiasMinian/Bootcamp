@@ -10,9 +10,19 @@ import com.bootcamp.app.persistence.managers.PostManager;
 
 public class PostService {
 	
-	// TODO Should I use Dependency Injection
 	private PostManager postManager;
 	private SubscriptionsService subscriptionsService;
+	
+	/* *** CONSTRUCTORS *** */
+	
+	public PostService(){}
+	
+	public PostService(PostManager postManager, SubscriptionsService subscriptionsService) {
+		this.postManager = postManager;
+		this.subscriptionsService = subscriptionsService;
+	}
+	
+	/* *** METHODS *** */
 	
 	public void addLike(User user, Post post) {
 		post.getLikes().add(user);
@@ -31,5 +41,23 @@ public class PostService {
 		subscriptionsService.notifyNewPost(post);
 		postManager.saveNewPost(post);
 		return post;
+	}
+	
+	/* *** GETTERS & SETTERS *** */
+
+	public PostManager getPostManager() {
+		return postManager;
+	}
+
+	public void setPostManager(PostManager postManager) {
+		this.postManager = postManager;
+	}
+
+	public SubscriptionsService getSubscriptionsService() {
+		return subscriptionsService;
+	}
+
+	public void setSubscriptionsService(SubscriptionsService subscriptionsService) {
+		this.subscriptionsService = subscriptionsService;
 	}
 }

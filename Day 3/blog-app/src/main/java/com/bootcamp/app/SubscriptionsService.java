@@ -10,9 +10,19 @@ import com.bootcamp.app.persistence.managers.UserManager;
 
 public class SubscriptionsService {
 
-	// TODO Should I use Dependency Injection
 	private UserManager userManager;
 	private GroupManager groupManager;
+	
+	/* *** CONSTRUCTORS *** */
+	
+	public SubscriptionsService(){}
+	
+	public SubscriptionsService(UserManager userManager, GroupManager groupManager) {
+		this.userManager = userManager;
+		this.groupManager = groupManager;		
+	}
+	
+	/* *** METHODS *** */
 
 	public void subscribeToUser(User subscriber, User user) {
 		user.getSubscribers().add(subscriber);
@@ -42,4 +52,22 @@ public class SubscriptionsService {
 				"Post: " + post.getTitle() + ". Author: " + post.getUser().getUsername(), 
 				user.getEmail());
 	}
+	
+	/* *** GETTERS & SETTERS *** */
+
+	public UserManager getUserManager() {
+		return userManager;
+	}
+
+	public void setUserManager(UserManager userManager) {
+		this.userManager = userManager;
+	}
+
+	public GroupManager getGroupManager() {
+		return groupManager;
+	}
+
+	public void setGroupManager(GroupManager groupManager) {
+		this.groupManager = groupManager;
+	}	
 }

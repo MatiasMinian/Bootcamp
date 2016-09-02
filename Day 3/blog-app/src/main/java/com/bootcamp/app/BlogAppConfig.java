@@ -58,4 +58,14 @@ public class BlogAppConfig {
 	public TagManager tagManager() {
 		return new TagManager(tagDAO());
 	}
+	
+	@Bean
+	public SubscriptionsService subscriptionsService() {
+		return new SubscriptionsService(userManager(), groupManager());		
+	}
+	
+	@Bean
+	public PostService postService() {
+		return new PostService(postManager(), subscriptionsService());
+	}
 }
