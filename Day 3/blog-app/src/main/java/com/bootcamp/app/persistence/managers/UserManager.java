@@ -8,8 +8,17 @@ import com.bootcamp.app.persistence.daos.interfaces.IUserDAO;
 
 public class UserManager {
 
-	// TODO Should I use Dependency Injection
 	private IUserDAO userDAO;
+	
+	/* *** CONSTRUCTORS *** */
+	
+	public UserManager(){}
+	
+	public UserManager(IUserDAO userDAO) {
+		this.userDAO = userDAO;		
+	}
+	
+	/* *** METHODS *** */
 
 	public void saveNewUser(User user) {
 		try {
@@ -55,4 +64,14 @@ public class UserManager {
 		}
 		return user;
 	}
+	
+	/* *** GETTERS & SETTERS *** */
+
+	public IUserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	public void setUserDAO(IUserDAO userDAO) {
+		this.userDAO = userDAO;
+	}	
 }

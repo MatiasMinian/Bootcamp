@@ -8,8 +8,17 @@ import com.bootcamp.app.persistence.daos.interfaces.ITagDAO;
 
 public class TagManager {
 
-	// TODO Should I use Dependency Injection
 	private ITagDAO tagDAO;
+	
+	/* *** CONSTRUCTORS *** */
+	
+	public TagManager(){}
+	
+	public TagManager(ITagDAO tagDAO) {
+		this.tagDAO = tagDAO;
+	}
+	
+	/* *** METHODS *** */
 
 	public void saveNewTag(Tag tag) {
 		try {
@@ -55,4 +64,14 @@ public class TagManager {
 		}
 		return tag;
 	}
+	
+	/* *** GETTERS & SETTERS *** */
+
+	public ITagDAO getTagDAO() {
+		return tagDAO;
+	}
+
+	public void setTagDAO(ITagDAO tagDAO) {
+		this.tagDAO = tagDAO;
+	}	
 }

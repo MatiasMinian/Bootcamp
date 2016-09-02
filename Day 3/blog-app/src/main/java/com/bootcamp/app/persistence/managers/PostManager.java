@@ -11,8 +11,17 @@ import com.bootcamp.app.persistence.daos.interfaces.IPostDAO;
 
 public class PostManager {
 
-	// TODO Should I use Dependency Injection
 	private IPostDAO postDAO;
+	
+	/* *** CONSTRUCTORS *** */
+	
+	public PostManager(){}
+	
+	public PostManager(IPostDAO postDAO) {
+		this.postDAO = postDAO;
+	}
+	
+	/* *** METHODS *** */
 
 	public void saveNewPost(Post post) {
 		try {
@@ -142,4 +151,14 @@ public class PostManager {
 		}
 		return posts;		
 	}
+	
+	/* *** GETTERS & SETTERS *** */
+
+	public IPostDAO getPostDAO() {
+		return postDAO;
+	}
+
+	public void setPostDAO(IPostDAO postDAO) {
+		this.postDAO = postDAO;
+	}	
 }

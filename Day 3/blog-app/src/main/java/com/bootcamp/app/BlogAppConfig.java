@@ -12,6 +12,9 @@ import com.bootcamp.app.persistence.daos.PostDAO;
 import com.bootcamp.app.persistence.daos.TagDAO;
 import com.bootcamp.app.persistence.daos.UserDAO;
 import com.bootcamp.app.persistence.managers.GroupManager;
+import com.bootcamp.app.persistence.managers.PostManager;
+import com.bootcamp.app.persistence.managers.TagManager;
+import com.bootcamp.app.persistence.managers.UserManager;
 
 @Configuration
 public class BlogAppConfig {
@@ -40,5 +43,19 @@ public class BlogAppConfig {
 	public GroupManager groupManager() {
 		return new GroupManager(groupDAO());
 	}
-
+	
+	@Bean
+	public UserManager userManager() {
+		return new UserManager(userDAO());
+	}
+	
+	@Bean
+	public PostManager postManager() {
+		return new PostManager(postDAO());
+	}
+	
+	@Bean
+	public TagManager tagManager() {
+		return new TagManager(tagDAO());
+	}
 }
