@@ -1,5 +1,8 @@
 package com.bootcamp.app;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import com.bootcamp.app.model.Group;
 import com.bootcamp.app.model.Post;
 import com.bootcamp.app.model.Tag;
@@ -13,6 +16,20 @@ public class App {
 	
 	public static void main(String[] args) {
 		
+		ApplicationContext context = new AnnotationConfigApplicationContext(BlogAppConfig.class);
+		
+		GroupManager groupManager = context.getBean(GroupManager.class);
+		
+		Group utn = new Group("utn");
+		
+		groupManager.saveNewGroup(utn);
+		
+		((AnnotationConfigApplicationContext)context).close();
+		
+		
+		
+		
+		/*
 		UserManager userManager = new UserManager();
 		TagManager tagManager = new TagManager();
 		GroupManager groupManager = new GroupManager();
@@ -54,6 +71,8 @@ public class App {
 		postManager.saveNewPost(alejosPost);
 		
 		postService.addLike(matias, alejosPost);
-		postManager.updatePost(alejosPost);		
+		postManager.updatePost(alejosPost);	
+		
+		*/
 	}
 }

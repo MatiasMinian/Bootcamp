@@ -8,8 +8,17 @@ import com.bootcamp.app.persistence.daos.interfaces.IGroupDAO;
 
 public class GroupManager {
 
-	// TODO Should I use Dependency Injection
 	private IGroupDAO groupDAO;
+	
+	/* *** CONSTRUCTORS *** */
+	
+	public GroupManager(){}
+	
+	public GroupManager(IGroupDAO groupDAO) {
+		this.groupDAO = groupDAO;
+	}
+	
+	/* *** METHODS *** */
 
 	public void saveNewGroup(Group group) {
 		try {
@@ -55,4 +64,14 @@ public class GroupManager {
 		}
 		return group;
 	}
+	
+	/* *** GETTERS & SETTERS *** */
+	
+	public IGroupDAO getGroupDAO() {
+		return groupDAO;
+	}
+
+	public void setGroupDAO(IGroupDAO groupDAO) {
+		this.groupDAO = groupDAO;
+	}	
 }
