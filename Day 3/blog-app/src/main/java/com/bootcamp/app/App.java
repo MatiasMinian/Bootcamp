@@ -1,16 +1,25 @@
 package com.bootcamp.app;
 
-import com.bootcamp.app.persistance.HibernateUtil;
+import com.bootcamp.app.model.Group;
+import com.bootcamp.app.model.Post;
+import com.bootcamp.app.model.Tag;
+import com.bootcamp.app.model.User;
+import com.bootcamp.app.persistence.managers.GroupManager;
+import com.bootcamp.app.persistence.managers.PostManager;
+import com.bootcamp.app.persistence.managers.TagManager;
+import com.bootcamp.app.persistence.managers.UserManager;
 
 public class App {
 	
 	public static void main(String[] args) {
 		
+		UserManager userManager = new UserManager();
+		TagManager tagManager = new TagManager();
+		GroupManager groupManager = new GroupManager();
+		PostManager postManager = new PostManager();
 		
-		HibernateUtil.beginTransaction();
-		//Session session = HibernateUtil.getSessionFactory().openSession();
-		//Transaction transaction = null;
-		//transaction = session.beginTransaction();
+		PostService postService = new PostService();
+		SubscriptionsService subscriptionsService = new SubscriptionsService();
 		
 		User matias = new User("matias", "matias@gmail.com");
 		User alejo = new User("alejo", "alejo@gmail.com");
@@ -21,96 +30,30 @@ public class App {
 		Tag books = new Tag("books");
 		Tag cars = new Tag("cars");
 		
-		Post matiasPost = matias.createPost("matiasPost1", "matiasText1", null, utn);
+		Post matiasPost = postService.createPost("matiasPost1", "matiasText1", null, matias, utn);	
 		matiasPost.getTags().add(sports);
 		matiasPost.getTags().add(books);
-		Post alejosPost = alejo.createPost("alejosPost1", "alejosText1", null);
+		Post alejosPost = postService.createPost("alejosPost1", "alejosText1", null, alejo);
 		alejosPost.getTags().add(cars);
 		
-		matiasPost.addLike(alejo);
+		postService.addLike(alejo, matiasPost);
 		
-		utn.subscribeUser(matias);
-		matias.subscribeUser(alejo);
+		subscriptionsService.subscribeToGroup(matias, utn);
+		subscriptionsService.subscribeToUser(alejo, matias);
 		
-		HibernateUtil.getSession().save(books);
-		HibernateUtil.getSession().save(sports);
-		HibernateUtil.getSession().save(cars);
-		//session.save(books);
-		//session.save(sports);
-		//session.save(cars);
+		tagManager.saveNewTag(books);
+		tagManager.saveNewTag(sports);
+		tagManager.saveNewTag(cars);
 		
-		HibernateUtil.getSession().save(utn);
-		//session.save(utn);
+		groupManager.saveNewGroup(utn);
+
+		userManager.saveNewUser(matias);
+		userManager.saveNewUser(alejo);
+
+		postManager.saveNewPost(matiasPost);
+		postManager.saveNewPost(alejosPost);
 		
-		HibernateUtil.getSession().save(matias);
-		HibernateUtil.getSession().save(alejo);
-		//session.save(matias);
-		//session.save(alejo);
-		
-		HibernateUtil.getSession().save(matiasPost);
-		HibernateUtil.getSession().save(alejosPost);
-		//session.save(matiasPost);
-		//session.save(alejosPost);
-		
-		alejosPost.addLike(matias);
-		HibernateUtil.getSession().saveOrUpdate(alejosPost);
-		//session.update(alejosPost);
-		
-		//session.delete(matias);
-		
-		HibernateUtil.commitTransaction();
-		//transaction.commit();
-		HibernateUtil.closeSession();
-		//session.close();
-		
-		
-		/*
-		User matias = new User("matias", "matias@gmail.com");
-		User pablo = new User("pablo", "pablo@gmail.com");
-		User alejo = new User("alejo", "alejo@gmail.com");
-		
-		Set<String> matiasTags = new HashSet<>();
-		matiasTags.add("Books");
-		TagsManager.getInstance().addTags(matiasTags);
-		
-		Set<String> pablosTags = new HashSet<>();
-		pablosTags.add("Smartphones");
-		pablosTags.add("Cars");
-		TagsManager.getInstance().addTags(pablosTags);
-		
-		Set<String> alejosTags = new HashSet<>();
-		alejosTags.add("Books");
-		alejosTags.add("Cars");
-		alejosTags.add("Sports");
-		TagsManager.getInstance().addTags(alejosTags);
-		
-		TagsManager.getInstance().getTags().forEach(tag -> System.out.print(tag + " "));
-		System.out.println();
-		
-		Group javaGroup = new Group("javaGroup");
-		javaGroup.suscribeUser(matias);
-		javaGroup.suscribeUser(pablo);
-		
-		PostsManager.getInstance().createPost("matiasGroupPost", "groupText", null, matias, javaGroup);
-		
-		PostsManager.getInstance().createPost("matiasPost1", "matiasText1", null, matias);
-		PostsManager.getInstance().createPost("matiasPost2", "matiasText2", null, matias);
-		PostsManager.getInstance().createPost("matiasPost3", "matiasText3", null, matias);
-		PostsManager.getInstance().createPost("pablosPost1", "pablosText1", null, pablo);
-		PostsManager.getInstance().createPost("pablosPost2", "pablosText2", null, pablo);
-		PostsManager.getInstance().createPost("pablosPost3", "pablosText3", null, pablo);
-		PostsManager.getInstance().createPost("alejosPost1", "alejosText1", null, alejo);
-		PostsManager.getInstance().createPost("alejosPost2", "alejosText2", null, alejo);
-		PostsManager.getInstance().createPost("alejosPost3", "alejosText3", null, alejo);
-		Post matiasPost4 = PostsManager.getInstance().createPost("matiasPost4", "matiasText4", null, matias);
-		PostsManager.getInstance().createPost("alejosPost4", "alejosText4", null, alejo);
-		PostsManager.getInstance().createPost("alejosPost5", "alejosText5", null, alejo);
-		
-		PostsManager.getInstance().deletePost(matiasPost4);
-		PostsManager.getInstance().sortByOldest(0).forEach(post -> System.out.println(post.getTitle()));		
-		PostsManager.getInstance().sortByNewest(0).forEach(post -> System.out.println(post.getTitle()));
-		PostsManager.getInstance().sortAlphabeticallyByTitle(0).forEach(post -> System.out.println(post.getTitle()));
-		*/
-		
+		postService.addLike(matias, alejosPost);
+		postManager.updatePost(alejosPost);		
 	}
 }

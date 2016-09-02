@@ -6,8 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GroupTest {
 
+public class GroupTest {
+	
+	/*
 	Group javaGroup = new Group("javaGroup");
 	
 	User matias = new User("matias", "minian.matias@gmail.com");
@@ -25,5 +27,6 @@ public class GroupTest {
 	public void testUserWasAdded() {
 		assertTrue(javaGroup.getSubscribers().contains(matias));
 	}
+	*/
 
 }

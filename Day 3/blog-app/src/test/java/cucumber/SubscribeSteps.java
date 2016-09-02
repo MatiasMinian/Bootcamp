@@ -2,7 +2,8 @@ package cucumber;
 
 import static org.junit.Assert.*;
 
-import com.bootcamp.app.User;
+import com.bootcamp.app.SubscriptionsService;
+import com.bootcamp.app.model.User;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -21,7 +22,7 @@ public class SubscribeSteps {
 	
 	@When("^the user subscribes to the blogger$")
 	public void subscribeToBlogger() {
-		pablo.subscribeUser(matias);
+		new SubscriptionsService().subscribeToUser(matias, pablo);
 	}
 	
 	@Then("^the blogger has a new subscriber$")

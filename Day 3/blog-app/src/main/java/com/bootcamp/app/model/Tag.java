@@ -1,4 +1,4 @@
-package com.bootcamp.app;
+package com.bootcamp.app.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +16,8 @@ public class Tag {
 	
 	@Column(name = "name", unique = true, nullable = false)
 	String name;
+	
+	/* *** CONSTRUCTORS *** */
 	
 	public Tag(){}
 	
@@ -36,4 +38,5 @@ public class Tag {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }

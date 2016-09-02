@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class PostTest {
 	
+	/*
 	User matias = new User("matias", "matias@gmail.com");
 	User bruno = new User("bruno", "bruno@gmail.com");
 	
@@ -28,5 +29,6 @@ public class PostTest {
 		
 		assertTrue(brunoPost1.getLikes().contains(matias));
 	}
+	*/
 
 }

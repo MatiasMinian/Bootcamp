@@ -1,4 +1,4 @@
-package com.bootcamp.app;
+package com.bootcamp.app.model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,6 +53,8 @@ public class Post {
 	@JoinTable(name = "LIKES", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> likes = new ArrayList<>();
 	
+	/* *** CONSTRUCTORS *** */
+	
 	public Post(){}
 	
 	public Post(String title, String text, Set<Tag> tags, User user) {
@@ -74,46 +76,58 @@ public class Post {
 		this.group = group;
 	}
 	
-	public void addLike(User user) {
-		likes.add(user);
-		
-	}
-	
 	/* *** GETTERS & SETTERS *** */
-	
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getText() {
 		return text;
 	}
+
 	public void setText(String text) {
 		this.text = text;
 	}
-	public Calendar getDate() {
+
+	public Calendar getCreationDate() {
 		return creationDate;
 	}
-	public void setDate(Calendar date) {
-		this.creationDate = date;
+
+	public void setCreationDate(Calendar creationDate) {
+		this.creationDate = creationDate;
 	}
+
 	public Set<Tag> getTags() {
 		return tags;
 	}
+
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	public List<User> getLikes() {
@@ -123,12 +137,4 @@ public class Post {
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}
-
-	public Group getGroup() {
-		return group;
-	}
-
-	public void setGroup(Group group) {
-		this.group = group;
-	}	
 }
