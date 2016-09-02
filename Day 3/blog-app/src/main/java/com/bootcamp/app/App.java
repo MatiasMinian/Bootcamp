@@ -1,5 +1,8 @@
 package com.bootcamp.app;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -8,7 +11,6 @@ import com.bootcamp.app.model.Post;
 import com.bootcamp.app.model.Tag;
 import com.bootcamp.app.model.User;
 import com.bootcamp.app.persistence.managers.GroupManager;
-import com.bootcamp.app.persistence.managers.PostManager;
 import com.bootcamp.app.persistence.managers.TagManager;
 import com.bootcamp.app.persistence.managers.UserManager;
 
@@ -18,61 +20,43 @@ public class App {
 		
 		ApplicationContext context = new AnnotationConfigApplicationContext(BlogAppConfig.class);
 		
+		UserManager userManager = context.getBean(UserManager.class);
+		TagManager tagManager = context.getBean(TagManager.class);
 		GroupManager groupManager = context.getBean(GroupManager.class);
 		
-		Group utn = new Group("utn");
-		
-		groupManager.saveNewGroup(utn);
-		
-		((AnnotationConfigApplicationContext)context).close();
-		
-		
-		
-		
-		/*
-		UserManager userManager = new UserManager();
-		TagManager tagManager = new TagManager();
-		GroupManager groupManager = new GroupManager();
-		PostManager postManager = new PostManager();
-		
-		PostService postService = new PostService();
-		SubscriptionsService subscriptionsService = new SubscriptionsService();
-		
-		User matias = new User("matias", "matias@gmail.com");
-		User alejo = new User("alejo", "alejo@gmail.com");
-		
-		Group utn = new Group("utn");
+		PostService postService = context.getBean(PostService.class);
+		SubscriptionsService subscriptionsService = context.getBean(SubscriptionsService.class);
 		
 		Tag sports = new Tag("sports");
 		Tag books = new Tag("books");
 		Tag cars = new Tag("cars");
+		tagManager.saveNewTag(books);
+		tagManager.saveNewTag(sports);
+		tagManager.saveNewTag(cars);
 		
-		Post matiasPost = postService.createPost("matiasPost1", "matiasText1", null, matias, utn);	
-		matiasPost.getTags().add(sports);
-		matiasPost.getTags().add(books);
-		Post alejosPost = postService.createPost("alejosPost1", "alejosText1", null, alejo);
-		alejosPost.getTags().add(cars);
+		Group utn = new Group("utn");
+		groupManager.saveNewGroup(utn);
+		
+		User matias = new User("matias", "matias@gmail.com");
+		User alejo = new User("alejo", "alejo@gmail.com");
+		userManager.saveNewUser(matias);
+		userManager.saveNewUser(alejo);
+		
+		Set<Tag> matiasTags = new HashSet<>();
+		matiasTags.add(sports);		
+		matiasTags.add(books);	
+		Set<Tag> alejosTags = new HashSet<>();
+		alejosTags.add(cars);
+		Post matiasPost = postService.createPost("matiasPost1", "matiasText1", matiasTags, matias, utn);	
+		Post alejosPost = postService.createPost("alejosPost1", "alejosText1", alejosTags, alejo);		
 		
 		postService.addLike(alejo, matiasPost);
 		
 		subscriptionsService.subscribeToGroup(matias, utn);
 		subscriptionsService.subscribeToUser(alejo, matias);
 		
-		tagManager.saveNewTag(books);
-		tagManager.saveNewTag(sports);
-		tagManager.saveNewTag(cars);
-		
-		groupManager.saveNewGroup(utn);
-
-		userManager.saveNewUser(matias);
-		userManager.saveNewUser(alejo);
-
-		postManager.saveNewPost(matiasPost);
-		postManager.saveNewPost(alejosPost);
-		
 		postService.addLike(matias, alejosPost);
-		postManager.updatePost(alejosPost);	
 		
-		*/
+		((AnnotationConfigApplicationContext)context).close();
 	}
 }
