@@ -60,7 +60,7 @@ public abstract class GenericDAO<T, PK extends Serializable> implements IGeneric
         return t;
 	}
 
-	@SuppressWarnings({ "deprecation", "unchecked" })
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll() {
 		return getSession().createCriteria(type).list();
