@@ -2,6 +2,7 @@ package com.bootcamp.app;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import com.bootcamp.app.model.Group;
 import com.bootcamp.app.model.Post;
@@ -17,6 +18,7 @@ import com.bootcamp.app.persistence.managers.TagManager;
 import com.bootcamp.app.persistence.managers.UserManager;
 
 @Configuration
+@EnableAspectJAutoProxy
 public class BlogAppConfig {
 	
 	@Bean
