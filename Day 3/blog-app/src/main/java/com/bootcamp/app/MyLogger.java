@@ -13,7 +13,7 @@ public class MyLogger {
 	Logger log = LogManager.getLogger();	
 	
 	//@Before("execution(* com.bootcamp.app.persistence.daos.interfaces.IGenericDAO.*(..))")
-	@Before("execution(* com.bootcamp.app.persistence.daos.interfaces.IGenericDAO.save(..))")
+	@Before("execution(* com.bootcamp.app.persistence.daos.interfaces.IGenericDAO.*(..))")
 	public void logBeginTransaction() {
 		log.info("Begin transaction");
 	}
