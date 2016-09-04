@@ -3,6 +3,7 @@ package com.bootcamp.app;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -14,9 +15,12 @@ import com.bootcamp.app.persistence.managers.GroupManager;
 import com.bootcamp.app.persistence.managers.TagManager;
 import com.bootcamp.app.persistence.managers.UserManager;
 
+@SpringBootApplication
 public class App {
 	
 	public static void main(String[] args) {
+		
+		//SpringApplication.run(App.class, args);
 		
 		ApplicationContext context = new AnnotationConfigApplicationContext(BlogAppConfig.class);
 		
