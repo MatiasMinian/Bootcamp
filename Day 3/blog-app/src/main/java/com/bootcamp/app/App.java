@@ -3,6 +3,7 @@ package com.bootcamp.app;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -20,8 +21,9 @@ public class App {
 	
 	public static void main(String[] args) {
 		
-		//SpringApplication.run(App.class, args);
+		SpringApplication.run(App.class, args);
 		
+		/*
 		ApplicationContext context = new AnnotationConfigApplicationContext(BlogAppConfig.class);
 		
 		UserManager userManager = context.getBean(UserManager.class);
@@ -62,5 +64,6 @@ public class App {
 		postService.addLike(matias, alejosPost);
 		
 		((AnnotationConfigApplicationContext)context).close();
+		*/
 	}
 }
