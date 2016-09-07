@@ -1,4 +1,4 @@
-package com.bootcamp.app.persistence.repositories;
+package com.bootcamp.app.persistence.daos;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import com.bootcamp.app.persistence.HibernateUtil;
-import com.bootcamp.app.persistence.repositories.interfaces.GenericDAO;
+import com.bootcamp.app.persistence.daos.interfaces.GenericDAO;
 
 public abstract class GenericDaoImpl<T, PK extends Serializable> implements GenericDAO<T, PK> {
 

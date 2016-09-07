@@ -1,4 +1,4 @@
-package com.bootcamp.app.persistence.repositories.interfaces;
+package com.bootcamp.app.persistence.daos.interfaces;
 
 import com.bootcamp.app.model.Product;
 

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.bootcamp.app.model.User;
 import com.bootcamp.app.persistence.HibernateUtil;
-import com.bootcamp.app.persistence.repositories.interfaces.UserDAO;
+import com.bootcamp.app.persistence.daos.interfaces.UserDAO;
 
 @Component
 public class UserManager {

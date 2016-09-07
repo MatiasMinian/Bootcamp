@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.bootcamp.app.model.Category;
 import com.bootcamp.app.persistence.HibernateUtil;
-import com.bootcamp.app.persistence.repositories.interfaces.CategoryDAO;
+import com.bootcamp.app.persistence.daos.interfaces.CategoryDAO;
 
 @Component
 public class CategoryManager {

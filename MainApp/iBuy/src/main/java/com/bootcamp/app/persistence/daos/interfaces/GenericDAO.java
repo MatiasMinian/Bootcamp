@@ -1,4 +1,4 @@
-package com.bootcamp.app.persistence.repositories.interfaces;
+package com.bootcamp.app.persistence.daos.interfaces;
 
 import java.io.Serializable;
 import java.util.List;

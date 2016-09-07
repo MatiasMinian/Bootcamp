@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.bootcamp.app.model.Product;
 import com.bootcamp.app.persistence.HibernateUtil;
-import com.bootcamp.app.persistence.repositories.interfaces.ProductDAO;
+import com.bootcamp.app.persistence.daos.interfaces.ProductDAO;
 
 @Component
 public class ProductManager {

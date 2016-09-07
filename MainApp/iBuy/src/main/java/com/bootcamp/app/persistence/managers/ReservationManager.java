@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.bootcamp.app.model.Reservation;
 import com.bootcamp.app.persistence.HibernateUtil;
-import com.bootcamp.app.persistence.repositories.interfaces.ReservationDAO;
+import com.bootcamp.app.persistence.daos.interfaces.ReservationDAO;
 
 @Component
 public class ReservationManager {
