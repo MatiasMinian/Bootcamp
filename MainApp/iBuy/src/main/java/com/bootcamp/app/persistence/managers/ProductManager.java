@@ -1,5 +1,8 @@
 package com.bootcamp.app.persistence.managers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,7 +38,6 @@ public class ProductManager {
 			e.printStackTrace();
 			HibernateUtil.rollbackTransaction();
 		}
-		System.out.println("Product was saved successfully");
 		return id;
 	}
 
@@ -48,7 +50,6 @@ public class ProductManager {
 			e.printStackTrace();
 			HibernateUtil.rollbackTransaction();
 		}
-		System.out.println("Product was updated successfully");
 	}
 
 	public void deleteProduct(Product product) {
@@ -60,7 +61,6 @@ public class ProductManager {
 			e.printStackTrace();
 			HibernateUtil.rollbackTransaction();
 		}
-		System.out.println("Product was deleted successfully");
 	}
 
 	public Product findProductById(Long id) {
@@ -72,8 +72,55 @@ public class ProductManager {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Product was found successfully");
 		return product;
+	}
+
+	public List<Product> findProductsByWord(String word) {
+		List<Product> products = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			products.addAll(productDAO.findByWord(word));
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return products;
+	}
+	
+	public List<Product> sortProductsByCheapest() {
+		List<Product> products = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			products.addAll(productDAO.sortByCheapest());
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return products;		
+	}
+	
+	public List<Product> sortProductsByPriciest() {
+		List<Product> products = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			products.addAll(productDAO.sortByPriciest());
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return products;		
+	}
+	
+	public List<Product> filterProductsByCategory(Long categoryId) {
+		List<Product> products = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			products.addAll(productDAO.filterByCategory(categoryId));
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return products;		
 	}
 
 	/* *** GETTERS & SETTERS *** */
