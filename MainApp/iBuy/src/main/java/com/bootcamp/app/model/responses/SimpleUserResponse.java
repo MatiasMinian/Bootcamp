@@ -7,13 +7,11 @@ import com.bootcamp.app.utils.DatesUtil;
 
 public class SimpleUserResponse {
 	
-	// TODO Leave only needed fields
-	
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private String username;
-	private Calendar birthDate;
+	private String birthDate;
 	private String email;
 	private boolean deleteable;
 	
@@ -26,7 +24,8 @@ public class SimpleUserResponse {
 		this.id = user.getId();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
-		this.birthDate = user.getBirthDate();
+		this.username = user.getUsername();
+		this.birthDate = DatesUtil.formatDate(user.getBirthDate());
 		this.email = user.getEmail();
 		this.deleteable = isDeleteable(user.getLastLogin());
 	}
@@ -67,11 +66,11 @@ public class SimpleUserResponse {
 		this.username = username;
 	}
 
-	public Calendar getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Calendar birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
