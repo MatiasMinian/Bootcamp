@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -33,22 +35,22 @@ public class User {
 	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "birth_date")
 	private Calendar birthDate;
 
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "last_login")
 	private Calendar lastLogin = Calendar.getInstance();
 	
-	// TODO Should it be lazy ?
-	@OneToMany(mappedBy = "buyer", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "buyer", fetch = FetchType.LAZY)
 	@Cascade({CascadeType.DELETE})
 	private List<Reservation> reservations = new ArrayList<>();
 	
-	// TODO Should it be lazy ? 
-	@OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
 	@Cascade({CascadeType.ALL})
 	private List<Product> products = new ArrayList<>();
 

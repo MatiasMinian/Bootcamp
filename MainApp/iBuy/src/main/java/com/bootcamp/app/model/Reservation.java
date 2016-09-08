@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "RESERVATIONS")
@@ -31,6 +33,7 @@ public class Reservation {
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date", nullable = false)
 	private Calendar date = Calendar.getInstance();
 	
