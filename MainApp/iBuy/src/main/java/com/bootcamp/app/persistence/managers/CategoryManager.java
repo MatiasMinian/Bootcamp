@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.bootcamp.app.model.Category;
-import com.bootcamp.app.persistence.HibernateUtil;
 import com.bootcamp.app.persistence.daos.interfaces.CategoryDAO;
+import com.bootcamp.app.utils.HibernateUtil;
 
 @Component
 public class CategoryManager {

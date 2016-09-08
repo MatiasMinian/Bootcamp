@@ -1,12 +1,15 @@
 package com.bootcamp.app.persistence.managers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.bootcamp.app.model.User;
-import com.bootcamp.app.persistence.HibernateUtil;
 import com.bootcamp.app.persistence.daos.interfaces.UserDAO;
+import com.bootcamp.app.utils.HibernateUtil;
 
 @Component
 public class UserManager {
@@ -35,7 +38,6 @@ public class UserManager {
 			e.printStackTrace();
 			HibernateUtil.rollbackTransaction();
 		}
-		System.out.println("User was saved successfully");
 		return id;
 	}
 
@@ -48,7 +50,6 @@ public class UserManager {
 			e.printStackTrace();
 			HibernateUtil.rollbackTransaction();
 		}
-		System.out.println("User was updated successfully");
 	}
 
 	public void deleteUser(User user) {
@@ -60,7 +61,6 @@ public class UserManager {
 			e.printStackTrace();
 			HibernateUtil.rollbackTransaction();
 		}
-		System.out.println("User was deleted successfully");
 	}
 
 	public User findUserById(Long id) {
@@ -72,8 +72,19 @@ public class UserManager {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
-		System.out.println("User was found successfully");
 		return user;
+	}
+	
+	public List<User> findAllUsers() {
+		List<User> users = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			users.addAll(userDAO.findAll(User.class));
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 	
 	/* *** GETTERS & SETTERS *** */
