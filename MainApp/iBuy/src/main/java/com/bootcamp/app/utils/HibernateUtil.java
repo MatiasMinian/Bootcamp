@@ -1,4 +1,4 @@
-package com.bootcamp.app.persistence;
+package com.bootcamp.app.utils;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
