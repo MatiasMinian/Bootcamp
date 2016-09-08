@@ -1,7 +1,9 @@
 package com.bootcamp.app;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +22,9 @@ import com.bootcamp.app.persistence.managers.UserManager;
 public class IBuyApplication {
 
 	public static void main(String[] args) {
+		SpringApplication.run(IBuyApplication.class, args);
+		
+		/*
 		ApplicationContext context = SpringApplication.run(IBuyApplication.class, args);
 		
 		UserManager userManager = context.getBean(UserManager.class);
@@ -27,13 +32,14 @@ public class IBuyApplication {
 		ProductManager productManager = context.getBean(ProductManager.class);
 		ReservationManager reservationManager = context.getBean(ReservationManager.class);
 		
-		/*
-		Calendar birthDate = Calendar.getInstance();
-		birthDate.set(1992, 10, 10);
-		User matias = new User("matias", "minian", "mminian", birthDate, "minian@gmail.com");
 		
-		birthDate.set(1993, 8, 21);
-		User alejo = new User("alejo", "kozicki", "alek", birthDate, "alejo@gmail.com");
+		Calendar matiasBirthDate = Calendar.getInstance();
+		matiasBirthDate.set(1992, 10, 10);
+		User matias = new User("matias", "minian", "mminian", matiasBirthDate, "minian@gmail.com");
+		
+		Calendar alejoBirthDate = Calendar.getInstance();
+		alejoBirthDate.set(1993, 8, 21);
+		User alejo = new User("alejo", "kozicki", "alek", alejoBirthDate, "alejo@gmail.com");
 		
 		Category technology = new Category("technology", "All products related with technology");
 		
@@ -43,6 +49,7 @@ public class IBuyApplication {
 		userManager.saveNewUser(matias);
 		userManager.saveNewUser(alejo);
 		*/
+		
 		
 		/*
 		Category cars = new Category("cars", "All cars");
