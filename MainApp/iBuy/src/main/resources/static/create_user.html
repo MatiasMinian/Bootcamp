@@ -1,0 +1,113 @@
+<form class="form-horizontal" id="form_create_user"">
+	<fieldset>
+
+		<legend>New User</legend>
+
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="username">Username:</label>
+			<div class="col-md-5">
+				<input id="username_input" name="username" type="text"
+					placeholder="username" class="form-control input-md" required="">
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="email_input">Email:</label>
+			<div class="col-md-5">
+				<input id="email_input" name="email" type="text"
+					placeholder="email" class="form-control input-md" required="">
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="first_name_input">First
+				Name:</label>
+			<div class="col-md-5">
+				<input id="first_name_input" name="firstName" type="text"
+					placeholder="first name" class="form-control input-md" required="">
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="last_name_input">Last
+				Name:</label>
+			<div class="col-md-5">
+				<input id="last_name_input" name="lastName" type="text"
+					placeholder="last name" class="form-control input-md" required="">
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="birth_date_input">Birth
+				Date:</label>
+			<div class="col-md-5">
+				<input id="birth_date_input" name="birthDate" type="text"
+					placeholder="yyyy-MM-dd" class="form-control input-md" required="">
+
+			</div>
+		</div>
+
+	</fieldset>
+	<div style="margin-top: 50px" class="container-fluid">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-6">
+
+						<Button id="new_user_create" type="button" class="btn btn-block btn-lg btn-success">
+						Create </Button>
+					</div>
+					<div class="col-md-6">
+
+						<button id="new_user_cancel" type="button" class="btn btn-lg btn-danger btn-block" >
+							Cancel/Back</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+</form>
+<h1 id="create_user_response" style="margin-top: 50px; text-align: center"></h1>
+<script type="text/javascript">
+	// Function for cancel button
+	$(function() {
+		$("#new_user_cancel").click(function(){
+			showUsers();
+		});		
+	});
+	
+	// Function for create button
+	$(function() {
+		$("#new_user_create").click(function() {
+			var frm = $("#form_create_user");
+			var parsedForm = getFormData(frm);
+			var formData = JSON.stringify(parsedForm);
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				data: formData,
+				url: "http://localhost:8080/api/create/user",
+			}).then(function(data, status, jqxhr) {
+				if (status == "success") {
+					$("#create_user_response").text(data);
+					$("input").text("");
+				} else {
+					$("#create_user_response").text("A problem has occured. Try again");
+				}
+			});
+		});
+	});
+	
+	//TODO Functio for clearing response text when focus an input
+	$(function() {
+		$("input").focus(function() {
+			$("#create_user_response").text("");
+		});
+	});
+</script>

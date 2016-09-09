@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +32,17 @@ public class UserController {
 		List<SimpleUserResponse> usersResponse = new ArrayList<>();
 		users.forEach(user -> usersResponse.add(new SimpleUserResponse(user)));
 		return usersResponse;
+	}
+	
+	@RequestMapping(value = "/api/create/user", consumes = "application/json", method = RequestMethod.POST)
+	public String createUser(@RequestBody User user) {
+		userManager.saveNewUser(user);
+		return "User was created successfully";		
+	}
+	
+	@RequestMapping(value = "/api/update/user", consumes = "application/json", method = RequestMethod.POST)
+	public String updateUser(@RequestBody User user) {
+		userManager.updateUser(user);
+		return "User was updated successfully";
 	}
 }
