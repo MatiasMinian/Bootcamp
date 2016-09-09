@@ -36,9 +36,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Page 1</a></li>
-					<li><a href="#">Page 2</a></li>
-					<li><a href="#">Page 3</a></li>
+					<li><a href="#">Users</a></li>
+					<li><a href="#">Categories</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
@@ -50,19 +49,36 @@
 		</div>
 	</nav>
 
-	<div class="container-fluid">
+	<div style="margin-top: 50px" class="container-fluid">
 		<div class="row">
 			<div class="col-md-4">
 
-				<button type="button" class="btn btn-block btn-success">
-					CreateUser</button>
+				<button id="button_create_user" type="button" class="btn btn-block btn-success">
+					Create User</button>
+				<button id="button_create_category" type="button" class="btn btn-block btn-success">
+					Create Category</button>
 			</div>
 			<div class="col-md-4"></div>
 			<div class="col-md-4"></div>
 		</div>
 	</div>
 
-	<div id="main" class="container"></div>
+	<div style="margin-top: 50px" id="main" class="container">
+		<table id="main_table" class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Username</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th></th>
+					<th></th>				
+				</tr>
+			</thead>
+			<tbody id="main_table_body">
+			</tbody>
+		</table>
+	</div>
 
 </body>
 </html>
