@@ -1,51 +1,53 @@
 <form class="form-horizontal" id="form_edit_user"">
 	<fieldset>
 
-		<legend>New User</legend>
+		<legend>Edit User</legend>
+		
+		<!--<input id="edit_user_id" name="id" type="text">-->
 
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="username">Username:</label>
+			<label class="col-md-4 control-label" for="edit_username_input">Username:</label>
 			<div class="col-md-5">
-				<input id="username_input" name="username" type="text"
+				<input id="edit_username_input" name="username" type="text"
 					placeholder="username" class="form-control input-md" required="">
 
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="email_input">Email:</label>
+			<label class="col-md-4 control-label" for="edit_email_input">Email:</label>
 			<div class="col-md-5">
-				<input id="email_input" name="email" type="text"
+				<input id="edit_email_input" name="email" type="text"
 					placeholder="email" class="form-control input-md" required="">
 
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="first_name_input">First
+			<label class="col-md-4 control-label" for="edit_first_name_input">First
 				Name:</label>
 			<div class="col-md-5">
-				<input id="first_name_input" name="firstName" type="text"
+				<input id="edit_first_name_input" name="firstName" type="text"
 					placeholder="first name" class="form-control input-md" required="">
 
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="last_name_input">Last
+			<label class="col-md-4 control-label" for="edit_last_name_input">Last
 				Name:</label>
 			<div class="col-md-5">
-				<input id="last_name_input" name="lastName" type="text"
+				<input id="edit_last_name_input" name="lastName" type="text"
 					placeholder="last name" class="form-control input-md" required="">
 
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="birth_date_input">Birth
+			<label class="col-md-4 control-label" for="edit_birth_date_input">Birth
 				Date:</label>
 			<div class="col-md-5">
-				<input id="birth_date_input" name="birthDate" type="text"
+				<input id="edit_birth_date_input" name="birthDate" type="text"
 					placeholder="yyyy-MM-dd" class="form-control input-md" required="">
 
 			</div>
@@ -60,7 +62,7 @@
 					<div class="col-md-6">
 
 						<Button id="edit_user_update" type="button" class="btn btn-block btn-lg btn-success">
-						Create </Button>
+						Update </Button>
 					</div>
 					<div class="col-md-6">
 
@@ -74,32 +76,3 @@
 	</div>
 </form>
 <h1 id="edit_user_response" style="margin-top: 50px; text-align: center"></h1>
-<script type="text/javascript">
-	// Function for cancel button
-	$(function() {
-		$("#edit_user_cancel").click(function(){
-			showUsers();
-		});		
-	});
-	
-	$(function() {
-		$("#edit_user_update").click(function() {
-			var frm = $("#form_edit_user");
-			var parsedForm = getFormData(frm);
-			var formData = JSON.stringify(parsedForm);
-			$.ajax({
-				type: "POST",
-				contentType: "application/json",
-				data: formData,
-				url: "http://localhost:8080/api/update/user",
-			}).then(function(data, status, jqxhr) {
-				if (status == "success") {
-					$("#edit_user_response").text(data);
-					$("input").text("");
-				} else {
-					$("#edit_user_response").text("A problem has occured. Try again");
-				}
-			});
-		});
-	});
-</script>

@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bootcamp.app.model.User;
 import com.bootcamp.app.model.responses.SimpleUserResponse;
 import com.bootcamp.app.persistence.managers.UserManager;
+import com.bootcamp.app.utils.DatesUtil;
 
 @RestController
 public class UserController {
@@ -36,13 +38,21 @@ public class UserController {
 	
 	@RequestMapping(value = "/api/create/user", consumes = "application/json", method = RequestMethod.POST)
 	public String createUser(@RequestBody User user) {
+		DatesUtil.addDays(user.getBirthDate(), 1);
 		userManager.saveNewUser(user);
 		return "User was created successfully";		
 	}
 	
 	@RequestMapping(value = "/api/update/user", consumes = "application/json", method = RequestMethod.POST)
 	public String updateUser(@RequestBody User user) {
+		DatesUtil.addDays(user.getBirthDate(), 1);
 		userManager.updateUser(user);
 		return "User was updated successfully";
+	}
+	
+	@RequestMapping(value = "api/delete/user", method = RequestMethod.POST)
+	public String deleteUser(@RequestBody User user) {
+		userManager.deleteUser(userManager.findUserById(user.getId()));
+		return "User was deleted successfully";
 	}
 }

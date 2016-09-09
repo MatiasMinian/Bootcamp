@@ -9,7 +9,7 @@ import org.joda.time.LocalDate;
 public class DatesUtil {
 	
 	public static String formatDate(Calendar date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(date.getTime());		
 	}
 	
@@ -17,5 +17,9 @@ public class DatesUtil {
 		LocalDate date1 = LocalDate.fromCalendarFields(calendar1);
 		LocalDate date2 = LocalDate.fromCalendarFields(calendar2);
 		return Days.daysBetween(date1, date2).getDays();
+	}
+	
+	public static void addDays(Calendar date, int days) {
+		date.add(Calendar.DAY_OF_MONTH, days);		
 	}
 }

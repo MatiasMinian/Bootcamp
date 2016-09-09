@@ -92,7 +92,7 @@
 				type: "POST",
 				contentType: "application/json",
 				data: formData,
-				url: "http://localhost:8080/api/create/user",
+				url: "http://localhost:8080/api/create/user"
 			}).then(function(data, status, jqxhr) {
 				if (status == "success") {
 					$("#create_user_response").text(data);
@@ -104,7 +104,7 @@
 		});
 	});
 	
-	//TODO Functio for clearing response text when focus an input
+	//TODO Function for clearing response text when focus an input
 	$(function() {
 		$("input").focus(function() {
 			$("#create_user_response").text("");
