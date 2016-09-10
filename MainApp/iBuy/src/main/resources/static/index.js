@@ -1,4 +1,4 @@
-// GENERIC FUNCTIONS
+// FUNCTIONS FROM USERS
 
 function showUsers() {
 	$("#main").load("show_users.html");
@@ -19,13 +19,13 @@ function showUsers() {
 			var tdEditButton = $("<td></td>");
 			var editButton = $("<button type=\"button\" class=\"btn btn-default\">Edit</button>");
 			editButton.click(function(){
-				onClickOnEditButton(user);
+				onClickOnEditUser(user);
 			});
 			tdEditButton.append(editButton);
 			var tdDeleteButton = $("<td></td>");
 			var deleteButton = $("<button type=\"button\" class=\"btn btn-danger "+buttonStatus+"\">Delete</button>");
 			deleteButton.click(function() {
-				onClickOnDeleteButton(user, tr);
+				onClickOnDeleteUser(user, tr);
 			});
 			tdDeleteButton.append(deleteButton);
 			tr.append(tdImpersonateButton, tdUsername, tdFirstName, tdLastName, tdEditButton, tdDeleteButton);
@@ -34,9 +34,8 @@ function showUsers() {
 	}, "json");	
 }
 
-function onClickOnEditButton(user) {
+function onClickOnEditUser(user) {
 	$("#main").load("edit_user.html", function(){
-		//$("#edit_user_id").val(user.id);
 		$("#edit_username_input").val(user.username);
 		$("#edit_email_input").val(user.email);
 		$("#edit_first_name_input").val(user.firstName);
@@ -66,13 +65,7 @@ function onClickOnEditButton(user) {
 	});	
 }
 
-function onClickOnDeleteButton(user, tr) {
-	//var response = {id:userId};
-	//response["id"] = id;
-	//var data = JSON.stringify(response);
-	//var id = 2;
-//	alert(data);
-	
+function onClickOnDeleteUser(user, tr) {
 	$.ajax({
 		type: "POST",
 		contentType: "application/json; charset=utf-8",
@@ -89,6 +82,101 @@ function onClickOnDeleteButton(user, tr) {
 	});
 }
 
+$(function(){
+	showUsers();
+});
+
+// FUNCTIONS FROM CATEGORIES
+
+function showCategories() {
+	$("#main").load("show_categories.html");
+	$.get("http://localhost:8080/api/categories", function(data, status){
+		var mainTableBody = $("#main_table_body");
+		$.each(data, function(index, category){
+			var tr = $("<tr></tr>");
+			var tdName = $("<td>"+category.name+"</td>");
+			var tdDescription = $("<td>"+category.description+"</td>");
+			var tdEditButton = $("<td></td>");
+			var editButton = $("<button type=\"button\" class=\"btn btn-default\">Edit</button>");
+			editButton.click(function(){
+				onClickOnEditCategory(category);
+			});
+			tdEditButton.append(editButton);
+			var tdDeleteButton = $("<td></td>");
+			var deleteButton = $("<button type=\"button\" class=\"btn btn-danger\">Delete</button>");
+			deleteButton.click(function() {
+				onClickOnDeleteCategory(category, tr);
+			});
+			tdDeleteButton.append(deleteButton);
+			tr.append(tdName, tdDescription, tdEditButton, tdDeleteButton);
+			mainTableBody.append(tr);
+		});
+	}, "json");
+}
+
+function onClickOnEditCategory(category) {
+	$("#main").load("edit_category.html", function(){
+		$("#edit_name_input").val(category.name);
+		$("#edit_description_input").val(category.description);
+		$("#edit_category_cancel").click(function() {
+			showCategories();
+		});
+		$("#edit_category_update").click(function(){
+			var frm = $("#form_edit_category");
+			var parsedForm = getFormData(frm);
+			parsedForm["id"] = category.id;
+			var formData = JSON.stringify(parsedForm);			
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				data: formData,
+				url: "http://localhost:8080/api/update/category"
+			}).then(function(data, status, jqxhr) {
+				if (status == "success") {
+					$("#edit_user_response").text(data);
+				} else {
+					$("#edit_user_response").text("A problem has occured. Try again");
+				}
+			});
+		});
+	});		
+}
+
+function onClickOnDeleteCategory(category, tr) {
+	$.ajax({
+		type: "POST",
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(category),	
+		url: "http://localhost:8080/api/delete/user"
+	}).then(function(data, status, jqxhr) {
+		if (status == "success") {
+			if (data.status == "success") {
+				tr.fadeOut(400, function(){
+		            tr.remove();
+		        });
+			} else {
+				alert(data.message);				
+			}						
+		} else {
+			alert("A problem has occured. Try again");
+		}
+	});
+}
+
+// GENERIC FUNCTIONS
+
+function onClickOnUsersTab() {
+	if(!$("#users_tab").hasClass("active")) {
+		showUsers();
+	}
+}
+
+function onClickOnCategoriesTab() {
+	if(!$("#categories_tab").hasClass("active")) {
+		showCategories();
+	}
+}
+
 function getFormData($form){
 	var unindexed_array = $form.serializeArray();
 	var indexed_array = {};
@@ -99,11 +187,4 @@ function getFormData($form){
 	return indexed_array;
 };
 
-// FUNCTIONS FROM USERS
 
-
-$(function(){
-	showUsers();
-});
-
-// FUNCTIONS FROM CREATE USER

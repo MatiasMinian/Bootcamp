@@ -1,0 +1,82 @@
+<form class="form-horizontal" id="form_create_category">
+	<fieldset>
+
+		<legend>Create Category</legend>
+
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="name_input">Name:</label>
+			<div class="col-md-5">
+				<input id="name_input" name="name" type="text"
+					placeholder="name" class="form-control input-md" required="">
+			</div>
+		</div>
+
+		<!-- Textarea -->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="description_input">Description:</label>
+			<div class="col-md-4">
+				<textarea class="form-control" id="description_input"
+					name="description"></textarea>
+			</div>
+		</div>
+
+	</fieldset>
+	<div style="margin-top: 50px" class="container-fluid">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-6">
+
+						<Button id="new_category_create" type="button"
+							class="btn btn-block btn-lg btn-success">Create</Button>
+					</div>
+					<div class="col-md-6">
+
+						<button id="new_category_cancel" type="button"
+							class="btn btn-lg btn-danger btn-block">Cancel/Back</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+</form>
+<h1 id="create_category_response" style="margin-top: 50px; text-align: center"></h1>
+<script type="text/javascript">
+	// Function for cancel button
+	$(function() {
+		$("#new_category_cancel").click(function(){
+			showCategories();
+		});		
+	});
+	
+	// Function for create button
+	$(function() {
+		$("#new_category_create").click(function() {
+			var frm = $("#form_create_category");
+			var parsedForm = getFormData(frm);
+			var formData = JSON.stringify(parsedForm);
+			$.ajax({
+				type: "POST",
+				contentType: "application/json",
+				data: formData,
+				url: "http://localhost:8080/api/create/category"
+			}).then(function(data, status, jqxhr) {
+				if (status == "success") {
+					$("#create_category_response").text(data);
+					$("input").text("");
+				} else {
+					$("#create_category_response").text("A problem has occured. Try again");
+				}
+			});
+		});
+	});
+	
+	//TODO Function for clearing response text when focus an input
+	$(function() {
+		$("input").focus(function() {
+			$("#create_category_response").text("");
+		});
+	});
+</script>
