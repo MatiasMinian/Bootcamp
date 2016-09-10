@@ -96,7 +96,7 @@
 			}).then(function(data, status, jqxhr) {
 				if (status == "success") {
 					$("#create_user_response").text(data);
-					$("input").text("");
+					$("input").val("");
 				} else {
 					$("#create_user_response").text("A problem has occured. Try again");
 				}

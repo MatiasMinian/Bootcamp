@@ -147,7 +147,7 @@ function onClickOnDeleteCategory(category, tr) {
 		type: "POST",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(category),	
-		url: "http://localhost:8080/api/delete/user"
+		url: "http://localhost:8080/api/delete/category"
 	}).then(function(data, status, jqxhr) {
 		if (status == "success") {
 			if (data.status == "success") {
@@ -166,13 +166,19 @@ function onClickOnDeleteCategory(category, tr) {
 // GENERIC FUNCTIONS
 
 function onClickOnUsersTab() {
-	if(!$("#users_tab").hasClass("active")) {
+	var usersTab = $("#users_tab");
+	if(!usersTab.hasClass("active")) {
+		usersTab.addClass("active");
+		$("#categories_tab").removeClass("active");
 		showUsers();
 	}
 }
 
 function onClickOnCategoriesTab() {
-	if(!$("#categories_tab").hasClass("active")) {
+	var categoriesTab = $("#categories_tab");
+	if(!categoriesTab.hasClass("active")) {
+		categoriesTab.addClass("active")
+		$("#users_tab").removeClass("active");
 		showCategories();
 	}
 }

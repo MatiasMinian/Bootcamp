@@ -65,7 +65,8 @@
 			}).then(function(data, status, jqxhr) {
 				if (status == "success") {
 					$("#create_category_response").text(data);
-					$("input").text("");
+					$("input").val("");
+					$("textarea").val("");
 				} else {
 					$("#create_category_response").text("A problem has occured. Try again");
 				}

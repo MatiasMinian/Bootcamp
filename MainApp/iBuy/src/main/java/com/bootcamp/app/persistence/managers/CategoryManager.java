@@ -1,5 +1,8 @@
 package com.bootcamp.app.persistence.managers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -76,9 +79,33 @@ public class CategoryManager {
 		return category;
 	}
 
+	public List<Category> findAllCategories() {
+		List<Category> categories = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			categories.addAll(categoryDAO.findAll(Category.class));
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return categories;
+	}
+	
+	public Long getCategoryProductsQuantity(Long categoryId) {
+		Long quantity = 0l;
+		try {
+			HibernateUtil.beginTransaction();
+			quantity = categoryDAO.categoryProductsQuantity(categoryId);
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return quantity;		
+	}
+
 	/* *** GETTERS & SETTERS *** */
 
-	public CategoryDAO getCategoryDAO() {
+	public CategoryDAO getSCategoryDAO() {
 		return categoryDAO;
 	}
 
