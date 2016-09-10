@@ -32,7 +32,7 @@ public class SimpleUserResponse {
 	
 	/* *** METHODS *** */
 	
-	private boolean isDeleteable(Calendar lastLogin) {
+	public boolean isDeleteable(Calendar lastLogin) {
 		return DatesUtil.differenceInDays(lastLogin, Calendar.getInstance()) > 30;
 	}
 	
