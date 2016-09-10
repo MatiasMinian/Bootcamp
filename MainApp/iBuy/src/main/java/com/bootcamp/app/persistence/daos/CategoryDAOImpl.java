@@ -1,7 +1,6 @@
 package com.bootcamp.app.persistence.daos;
 
-import javax.persistence.Query;
-
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.bootcamp.app.model.Category;
@@ -13,7 +12,7 @@ public class CategoryDAOImpl extends GenericDaoImpl<Category, Long> implements C
 	@Override
 	public Long categoryProductsQuantity(Long categoryId) {
 		String sql = "SELECT count(*) FROM Product p WHERE p.category.id = :id";
-		Query query = (Query) getSession().createQuery(sql).setParameter("id", categoryId.toString());
-		return ((Long) query.getSingleResult());
+		Query query = getSession().createQuery(sql).setParameter("id", categoryId);
+		return (Long) query.uniqueResult();
 	}
 }

@@ -24,9 +24,11 @@ function showUsers() {
 			tdEditButton.append(editButton);
 			var tdDeleteButton = $("<td></td>");
 			var deleteButton = $("<button type=\"button\" class=\"btn btn-danger "+buttonStatus+"\">Delete</button>");
-			deleteButton.click(function() {
-				onClickOnDeleteUser(user, tr);
-			});
+			if (user.deletable) {
+				deleteButton.click(function() {
+					onClickOnDeleteUser(user, tr);
+				});
+			}
 			tdDeleteButton.append(deleteButton);
 			tr.append(tdImpersonateButton, tdUsername, tdFirstName, tdLastName, tdEditButton, tdDeleteButton);
 			mainTableBody.append(tr);		

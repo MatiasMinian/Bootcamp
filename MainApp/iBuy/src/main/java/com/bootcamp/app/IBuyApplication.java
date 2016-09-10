@@ -24,15 +24,10 @@ public class IBuyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IBuyApplication.class, args);
 		
+		
+		//ApplicationContext context = SpringApplication.run(IBuyApplication.class, args);
+		
 		/*
-		ApplicationContext context = SpringApplication.run(IBuyApplication.class, args);
-		
-		UserManager userManager = context.getBean(UserManager.class);
-		CategoryManager categoryManager = context.getBean(CategoryManager.class);
-		ProductManager productManager = context.getBean(ProductManager.class);
-		ReservationManager reservationManager = context.getBean(ReservationManager.class);
-		
-		
 		Calendar matiasBirthDate = Calendar.getInstance();
 		matiasBirthDate.set(1992, 10, 10);
 		User matias = new User("matias", "minian", "mminian", matiasBirthDate, "minian@gmail.com");
