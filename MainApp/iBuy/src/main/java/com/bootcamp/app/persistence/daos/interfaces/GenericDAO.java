@@ -3,7 +3,7 @@ package com.bootcamp.app.persistence.daos.interfaces;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Query;
+import org.hibernate.Query;
 
 public interface GenericDAO<T, PK extends Serializable> {
 

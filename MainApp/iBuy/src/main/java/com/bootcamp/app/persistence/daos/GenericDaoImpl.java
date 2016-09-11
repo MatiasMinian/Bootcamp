@@ -3,8 +3,7 @@ package com.bootcamp.app.persistence.daos;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Query;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.bootcamp.app.persistence.daos.interfaces.GenericDAO;
@@ -41,7 +40,7 @@ public abstract class GenericDaoImpl<T, PK extends Serializable> implements Gene
 	@Override
 	public T findOne(Query query) {
 		T t;
-        t = (T) query.getSingleResult();
+        t = (T) query.uniqueResult();
         return t;
 	}
 
@@ -49,7 +48,7 @@ public abstract class GenericDaoImpl<T, PK extends Serializable> implements Gene
 	@Override
 	public List<T> findMany(Query query) {
 		List<T> t;
-        t = (List<T>) query.getResultList();
+        t = (List<T>) query.list();
         return t;
 	}
 
