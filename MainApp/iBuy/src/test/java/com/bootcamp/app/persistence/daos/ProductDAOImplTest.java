@@ -37,9 +37,9 @@ public class ProductDAOImplTest {
 	@Autowired
 	UserDAO userDAO;
 
-	Product nexus;
+	Product nexus, ipad, samsung;
 	User matias;
-	Category phones;
+	Category phones, apple;
 	
 	boolean deletionTest = false;
 	
@@ -48,12 +48,18 @@ public class ProductDAOImplTest {
 	public void setUp() throws Exception {
 		matias = new User("Matias", "Minian", "mat", Calendar.getInstance(), "mat@gmail.com");
 		phones = new Category("phones", "smartphones");
+		apple = new Category("apple", "apple products");
 		nexus = new Product("nexus", "phone", matias, phones, "img", new BigDecimal(1000), true);
+		ipad = new Product("ipad", "apple", matias, apple, "img", new BigDecimal(3000), true);
+		samsung = new Product("samsung", "phone", matias, phones, "img", new BigDecimal(2200), true);
 		
 		beginTransaction();
 		categoryDAO.save(phones);
+		categoryDAO.save(apple);
 		userDAO.save(matias);
+		productDAO.save(ipad);
 		productDAO.save(nexus);
+		productDAO.save(samsung);
 		commitTransaction();		
 	}
 
@@ -63,8 +69,11 @@ public class ProductDAOImplTest {
 		if (!deletionTest) {
 			productDAO.delete(nexus);
 		}
+		productDAO.delete(ipad);
+		productDAO.delete(samsung);
 		userDAO.delete(matias);
 		categoryDAO.delete(phones);
+		categoryDAO.delete(apple);
 		commitTransaction();
 		
 	}
@@ -103,21 +112,47 @@ public class ProductDAOImplTest {
 	
 	@Test
 	public void testSearchProducts() {
-		Product samsung = new Product("samsung", "phone", matias, phones, "img", new BigDecimal(1000), true);
-		Product iphone = new Product("apple", "apple", matias, phones, "img", new BigDecimal(1000), true);
-		beginTransaction();
-		productDAO.save(samsung);
-		productDAO.save(iphone);
-		commitTransaction();
-		
 		beginTransaction();
 		List<Product> products = productDAO.searchProduct("phone");	
 		commitTransaction();
 		
-		beginTransaction();
-		productDAO.delete(samsung);
-		productDAO.delete(iphone);
-		commitTransaction();
 		assertTrue(products.size() == 2);
+	}
+	
+	@Test
+	public void testSortByCheapest() {
+		beginTransaction();
+		List<Product> products = productDAO.sortByCheapest();	
+		commitTransaction();
+		
+		assertTrue(products.get(0).getName().equals("nexus"));
+		assertTrue(products.get(1).getName().equals("samsung"));
+		assertTrue(products.get(2).getName().equals("ipad"));
+	}
+	
+	@Test
+	public void testSortByPriciest() {
+		beginTransaction();
+		List<Product> products = productDAO.sortByPriciest();	
+		commitTransaction();
+		
+		assertTrue(products.get(0).getName().equals("ipad"));
+		assertTrue(products.get(1).getName().equals("samsung"));
+		assertTrue(products.get(2).getName().equals("nexus"));
+	}
+	
+	@Test
+	public void testFilterByCategory() {
+		beginTransaction();
+		List<Product> productsInPhones = productDAO.filterByCategory(phones.getId());
+		List<Product> productsInApple = productDAO.filterByCategory(apple.getId());
+		commitTransaction();
+		
+		assertTrue(productsInApple.size() == 1);
+		assertTrue(productsInApple.get(0).getName().equals("ipad"));
+		
+		assertTrue(productsInPhones.size() == 2);
+		assertTrue(productsInPhones.get(0).getName().equals("nexus"));
+		assertTrue(productsInPhones.get(1).getName().equals("samsung"));		
 	}
 }

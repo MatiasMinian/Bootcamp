@@ -18,11 +18,6 @@ public class ProductDAOImpl extends GenericDaoImpl<Product, Long> implements Pro
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> searchProduct(String searchText) {
-		// String sql = "SELECT p FROM Product p WHERE CHARINDEX(:word, p.name)
-		// > 0 or CHARINDEX(:word, p.description) > 0";
-		// Query query = getSession().createQuery(sql).setParameter("word",
-		// word);
-		// return findMany(query);
 		List<Product> products = new ArrayList<>();
 		try {
 			FullTextSession fullTextSession = Search.getFullTextSession(getSession());
@@ -42,21 +37,21 @@ public class ProductDAOImpl extends GenericDaoImpl<Product, Long> implements Pro
 
 	@Override
 	public List<Product> sortByCheapest() {
-		String sql = "SELECT p FROM Product ORDER BY p.price asc";
+		String sql = "SELECT p FROM Product p ORDER BY p.price asc";
 		Query query = getSession().createQuery(sql);
 		return findMany(query);
 	}
 
 	@Override
 	public List<Product> sortByPriciest() {
-		String sql = "SELECT p FROM Product ORDER BY p.price desc";
+		String sql = "SELECT p FROM Product p ORDER BY p.price desc";
 		Query query = getSession().createQuery(sql);
 		return findMany(query);
 	}
 
 	@Override
 	public List<Product> filterByCategory(Long categoryId) {
-		String sql = "SELECT p FROM Product WHERE p.category.id = :id";
+		String sql = "SELECT p FROM Product p WHERE p.category.id = :id";
 		Query query = getSession().createQuery(sql).setParameter("id", categoryId);
 		return findMany(query);
 	}
