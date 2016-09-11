@@ -14,9 +14,15 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
 @Entity
 @Table(name = "PRODUCTS")
+@Indexed
 public class Product {
 
 	@Id
@@ -25,9 +31,11 @@ public class Product {
 	private Long id;
 
 	@Column(name = "name", nullable = false)
+	@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	private String name;
 
 	@Column(name = "description")
+	@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	private String description;
 
 	// TODO Should it be lazy ?

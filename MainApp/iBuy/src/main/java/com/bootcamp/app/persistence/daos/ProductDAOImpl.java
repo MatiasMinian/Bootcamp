@@ -1,8 +1,12 @@
 package com.bootcamp.app.persistence.daos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
 
 import com.bootcamp.app.model.Product;
@@ -11,11 +15,29 @@ import com.bootcamp.app.persistence.daos.interfaces.ProductDAO;
 @Repository
 public class ProductDAOImpl extends GenericDaoImpl<Product, Long> implements ProductDAO {
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> findByWord(String word) {
-		String sql = "SELECT p FROM Product p WHERE CHARINDEX(:word, p.name) > 0 or CHARINDEX(:word, p.description) > 0";
-		Query query = getSession().createQuery(sql).setParameter("word", word);
-		return findMany(query);
+	public List<Product> searchProduct(String searchText) {
+		// String sql = "SELECT p FROM Product p WHERE CHARINDEX(:word, p.name)
+		// > 0 or CHARINDEX(:word, p.description) > 0";
+		// Query query = getSession().createQuery(sql).setParameter("word",
+		// word);
+		// return findMany(query);
+		List<Product> products = new ArrayList<>();
+		try {
+			FullTextSession fullTextSession = Search.getFullTextSession(getSession());
+
+			QueryBuilder qb = fullTextSession.getSearchFactory().buildQueryBuilder().forEntity(Product.class).get();
+			org.apache.lucene.search.Query query = qb.keyword().onFields("name", "description")
+					.matching(searchText).createQuery();
+
+			Query hibQuery = fullTextSession.createFullTextQuery(query, Product.class);
+
+			products = hibQuery.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return products;
 	}
 
 	@Override

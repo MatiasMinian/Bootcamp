@@ -79,7 +79,7 @@ public class ProductManager {
 		List<Product> products = new ArrayList<>();
 		try {
 			HibernateUtil.beginTransaction();
-			products.addAll(productDAO.findByWord(word));
+			products.addAll(productDAO.searchProduct(word));
 			HibernateUtil.commitTransaction();
 		} catch (HibernateException e) {
 			e.printStackTrace();

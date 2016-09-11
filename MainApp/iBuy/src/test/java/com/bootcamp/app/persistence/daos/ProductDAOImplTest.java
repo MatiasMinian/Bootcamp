@@ -102,19 +102,22 @@ public class ProductDAOImplTest {
 	}
 	
 	@Test
-	public void testFindByWord() {
+	public void testSearchProducts() {
 		Product samsung = new Product("samsung", "phone", matias, phones, "img", new BigDecimal(1000), true);
 		Product iphone = new Product("apple", "apple", matias, phones, "img", new BigDecimal(1000), true);
 		beginTransaction();
 		productDAO.save(samsung);
 		productDAO.save(iphone);
+		commitTransaction();
 		
-		List<Product> products = productDAO.findByWord("phone");		
+		beginTransaction();
+		List<Product> products = productDAO.searchProduct("phone");	
+		commitTransaction();
 		
+		beginTransaction();
 		productDAO.delete(samsung);
 		productDAO.delete(iphone);
 		commitTransaction();
 		assertTrue(products.size() == 2);
 	}
-
 }
