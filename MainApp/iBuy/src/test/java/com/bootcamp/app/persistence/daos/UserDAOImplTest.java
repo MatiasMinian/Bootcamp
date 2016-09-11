@@ -15,7 +15,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bootcamp.app.IBuyApplication;
-import com.bootcamp.app.model.Category;
 import com.bootcamp.app.model.User;
 import com.bootcamp.app.persistence.daos.interfaces.UserDAO;
 

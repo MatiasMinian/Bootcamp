@@ -12,6 +12,10 @@ function showUsers() {
 			var tr = $("<tr></tr>");
 			var tdImpersonateButton = $("<td></td>");
 			var impersonateButton = $("<button type=\"button\" class=\"btn btn-primary\">Impersonate</button>");
+			impersonateButton.click(function() {
+				localStorage.setItem("user_session", JSON.stringify(user));
+				window.location.href = "home.html";
+			});
 			tdImpersonateButton.append(impersonateButton);
 			var tdUsername = $("<td>"+user.username+"</td>");
 			var tdFirstName = $("<td>"+user.firstName+"</td>");
