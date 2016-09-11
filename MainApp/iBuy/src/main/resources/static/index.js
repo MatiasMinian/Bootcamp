@@ -1,7 +1,11 @@
 // FUNCTIONS FROM USERS
 
 function showUsers() {
-	$("#main").load("show_users.html");
+	$("#main").load("show_users.html", function() {
+		$("#button_update_reservations").click( function() {
+			updateReservations();
+		});
+	});
 	$.get("http://localhost:8080/api/users", function(data, status){
 		var mainTableBody = $("#main_table_body");
 		$.each(data, function(index, user){

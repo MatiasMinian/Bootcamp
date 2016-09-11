@@ -26,7 +26,6 @@ public class ReservationService {
 		List<Reservation> reservations = reservationManager.findAllReservations();
 		reservations.forEach(reservation -> {
 			if (DatesUtil.differenceInDays(reservation.getDate(), Calendar.getInstance()) > 7) {
-				System.out.println("Estoy adentro de condicion");
 				reservationManager.deleteReservation(reservation);				
 			}
 		});		
