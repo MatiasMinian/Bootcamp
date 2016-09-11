@@ -1,7 +1,5 @@
 package com.bootcamp.app.model.responses;
 
-import java.util.Calendar;
-
 import com.bootcamp.app.model.User;
 import com.bootcamp.app.utils.DatesUtil;
 
@@ -27,13 +25,6 @@ public class SimpleUserResponse {
 		this.username = user.getUsername();
 		this.birthDate = DatesUtil.formatDate(user.getBirthDate());
 		this.email = user.getEmail();
-		this.deleteable = isDeleteable(user.getLastLogin());
-	}
-	
-	/* *** METHODS *** */
-	
-	public boolean isDeleteable(Calendar lastLogin) {
-		return DatesUtil.differenceInDays(lastLogin, Calendar.getInstance()) > 30;
 	}
 	
 	/* *** GETTERS & SETTERS *** */
