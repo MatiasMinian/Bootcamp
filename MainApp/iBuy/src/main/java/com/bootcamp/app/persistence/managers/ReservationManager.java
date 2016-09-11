@@ -1,5 +1,8 @@
 package com.bootcamp.app.persistence.managers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -74,6 +77,18 @@ public class ReservationManager {
 		}
 		System.out.println("Reservation was found successfully");
 		return reservation;
+	}
+	
+	public List<Reservation> findAllReservations() {
+		List<Reservation> reservations = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			reservations.addAll(reservationDAO.findAll(Reservation.class));
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return reservations;
 	}
 
 	/* *** GETTERS & SETTERS *** */

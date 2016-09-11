@@ -88,6 +88,20 @@ function onClickOnDeleteUser(user, tr) {
 	});
 }
 
+function updateReservations() {
+	$.ajax({
+		type: "POST",
+		contentType: "application/json; charset=utf-8",
+		url: "http://localhost:8080/api/update/reservations"
+	}).then(function(data, status, jqxhr) {
+		if (status == "success") {
+			alert(data.message);					
+		} else {
+			alert("A problem has occured. Try again");
+		}
+	});	
+}
+
 $(function(){
 	showUsers();
 });
