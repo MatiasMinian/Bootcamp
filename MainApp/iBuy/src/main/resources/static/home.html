@@ -32,18 +32,111 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
+					<li id="catalog_tab" class="active"><a href="#">Catalog</a></li>
+					<li id="my_products_tab"><a href="my_products.html">Categories</a></li>
+					<li id="my_reservations_tab"><a href="my_reservations.html">Categories</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li id="user_profile"><a id="user_profile_text" href="#" onclick="onClickOnUserProfile();">
-						</a></li>
-					<li id="user_logout"><a href="#" onclick="onClickOnLogout();"><span class="glyphicon glyphicon-log-in"></span>  Logout</a></li>
+					<li id="user_profile"><a id="user_profile_text" href="#"
+						onclick="onClickOnUserProfile();"> </a></li>
+					<li id="user_logout"><a href="#" onclick="onClickOnLogout();"><span
+							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
+
+	<div class="row">
+		<div id="search_panel" class="col-sm-4">
+			<form class="form-horizontal">
+				<fieldset>
+
+					<!-- Form Name -->
+					<legend>Form Name</legend>
+
+					<!-- Search input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="search_product">Search:
+						</label>
+						<div class="col-md-5">
+							<input id="search_product" name="search_product" type="search"
+								placeholder="search your product" class="form-control input-md">
+
+						</div>
+					</div>
+
+					<!-- Multiple Radios -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="sort_by">Sort
+							by:</label>
+						<div class="col-md-4">
+							<div class="radio">
+								<label for="sort_by-0"> <input type="radio"
+									name="sort_by" id="sort_by-0" value="1" checked="checked">
+									Newest
+								</label>
+							</div>
+							<div class="radio">
+								<label for="sort_by-1"> <input type="radio"
+									name="sort_by" id="sort_by-1" value="2"> Oldest
+								</label>
+							</div>
+							<div class="radio">
+								<label for="sort_by-2"> <input type="radio"
+									name="sort_by" id="sort_by-2" value="3"> Cheapest
+								</label>
+							</div>
+							<div class="radio">
+								<label for="sort_by-3"> <input type="radio"
+									name="sort_by" id="sort_by-3" value="4"> Priciest
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Multiple Checkboxes -->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="filter_by">Filter
+							by:</label>
+						<div class="col-md-4">
+							<div class="checkbox">
+								<label for="filter_by-0"> <input type="checkbox"
+									name="filter_by" id="filter_by-0" value="1"> New
+								</label>
+							</div>
+							<div class="checkbox">
+								<label for="filter_by-1"> <input type="checkbox"
+									name="filter_by" id="filter_by-1" value="2"> Used
+								</label>
+							</div>
+						</div>
+					</div>
+
+				</fieldset>
+			</form>
+		</div>
+		<div id="main" class="col-sm-8">
+			<table style="margin-top: 50px" id="main_table"
+				class="table table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Condition</th>
+					</tr>
+				</thead>
+				<tbody id="main_table_body">
+				</tbody>
+			</table>
+
+		</div>
+	</div>
 
 
-<script type="text/javascript" src="home.js"></script>
+
+
+
+	<script type="text/javascript" src="home.js"></script>
 </body>
 </html>

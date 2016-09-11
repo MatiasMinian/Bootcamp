@@ -24,12 +24,12 @@ public class Reservation {
 	private Long id;
 	
 	// TODO Should it be lazy ?
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User buyer;
 	
 	// TODO Should it be lazy ?
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 	

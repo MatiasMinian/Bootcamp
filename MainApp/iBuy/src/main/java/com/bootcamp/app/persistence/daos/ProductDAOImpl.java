@@ -48,7 +48,7 @@ public class ProductDAOImpl extends GenericDaoImpl<Product, Long> implements Pro
 		Query query = getSession().createQuery(sql);
 		return findMany(query);
 	}
-
+	
 	@Override
 	public List<Product> filterByCategory(Long categoryId) {
 		String sql = "SELECT p FROM Product p WHERE p.category.id = :id";

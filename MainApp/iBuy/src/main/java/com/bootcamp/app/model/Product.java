@@ -39,17 +39,17 @@ public class Product {
 	private String description;
 
 	// TODO Should it be lazy ?
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User owner;
 
 	// TODO Shoul it be lazy?
-	@OneToOne(mappedBy = "product", fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
 	@Cascade({CascadeType.DELETE})
-	private Reservation reservation = null;
+	private Reservation reservation;
 
 	// TODO Should it be lazy ?
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id", nullable = false)
 	@Cascade({CascadeType.SAVE_UPDATE})
 	private Category category;
