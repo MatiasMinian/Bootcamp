@@ -87,7 +87,7 @@ public class ReservationDAOImplTest {
 	}
 
 	@Test
-	public void testCategoryWasUpdated() {
+	public void testReservationWasUpdated() {
 		Calendar date = Calendar.getInstance();
 		date.set(2015, 8, 12);
 		pabloResNexus.setDate(date);
@@ -101,7 +101,7 @@ public class ReservationDAOImplTest {
 	}
 
 	@Test
-	public void testCategoryWasDeleted() {
+	public void testReservationWasDeleted() {
 		deletionTest = true;
 		beginTransaction();
 		reservationDAO.delete(pabloResNexus);
