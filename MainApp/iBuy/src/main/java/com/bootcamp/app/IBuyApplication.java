@@ -24,27 +24,44 @@ public class IBuyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IBuyApplication.class, args);
 		
-		
-		//ApplicationContext context = SpringApplication.run(IBuyApplication.class, args);
-		
 		/*
+		ApplicationContext context = SpringApplication.run(IBuyApplication.class, args);
+		UserManager userManager = context.getBean(UserManager.class);
+		ProductManager productManager = context.getBean(ProductManager.class);
+		CategoryManager categoryManager = context.getBean(CategoryManager.class);
+		ReservationManager reservationManager = context.getBean(ReservationManager.class);
+		
+		
 		Calendar matiasBirthDate = Calendar.getInstance();
 		matiasBirthDate.set(1992, 10, 10);
-		User matias = new User("matias", "minian", "mminian", matiasBirthDate, "minian@gmail.com");
+		User matias = new User("Matias", "Minian", "mminian", matiasBirthDate, "minian@gmail.com");
+		
+		Calendar pabloBirthDate = Calendar.getInstance();
+		pabloBirthDate.set(1995, 3, 4);
+		User pablo = new User("Pablo", "Alice", "pablo", pabloBirthDate, "pablo.a@gmail.com");
 		
 		Calendar alejoBirthDate = Calendar.getInstance();
 		alejoBirthDate.set(1993, 8, 21);
 		User alejo = new User("alejo", "kozicki", "alek", alejoBirthDate, "alejo@gmail.com");
 		
 		Category technology = new Category("technology", "All products related with technology");
+		Category cars = new Category("cars", "Hybrid, deluxe and pickups");
 		
 		Product nexusPhone = new Product("Nexus 6", "Great phone", alejo, technology, "url", new BigDecimal(5000), true);
+		Product fordFiesta = new Product("Fiesta", "Ford Fiesta almost new", alejo, cars, "url", new BigDecimal(150000), false);
+		Product iphone = new Product("iphone", "Apple", pablo, technology, "url", new BigDecimal(7500), true);
 		
-		alejo.addProduct(nexusPhone);
 		userManager.saveNewUser(matias);
 		userManager.saveNewUser(alejo);
-		*/
+		userManager.saveNewUser(pablo);
 		
+		categoryManager.saveNewCategory(cars);
+		categoryManager.saveNewCategory(technology);		
+		
+		productManager.saveNewProduct(iphone);
+		productManager.saveNewProduct(fordFiesta);
+		productManager.saveNewProduct(nexusPhone);
+		*/
 		
 		/*
 		Category cars = new Category("cars", "All cars");

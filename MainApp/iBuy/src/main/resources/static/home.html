@@ -33,12 +33,11 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li id="catalog_tab" class="active"><a href="#">Catalog</a></li>
-					<li id="my_products_tab"><a href="my_products.html">Categories</a></li>
-					<li id="my_reservations_tab"><a href="my_reservations.html">Categories</a></li>
+					<li id="my_products_tab"><a href="my_products.html">My Products</a></li>
+					<li id="my_reservations_tab"><a href="my_reservations.html">My Reservation</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li id="user_profile"><a id="user_profile_text" href="#"
-						onclick="onClickOnUserProfile();"> </a></li>
+					<li id="user_profile"><a id="user_profile_text" href="user_profile.html"></a></li>
 					<li id="user_logout"><a href="#" onclick="onClickOnLogout();"><span
 							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				</ul>
@@ -50,9 +49,6 @@
 		<div id="search_panel" class="col-sm-4">
 			<form class="form-horizontal">
 				<fieldset>
-
-					<!-- Form Name -->
-					<legend>Form Name</legend>
 
 					<!-- Search input-->
 					<div class="form-group">
@@ -124,6 +120,7 @@
 						<th>Category</th>
 						<th>Price</th>
 						<th>Condition</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody id="main_table_body">

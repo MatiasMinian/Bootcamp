@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iBuy - Profile</title>
+<!-- Latest compiled jQuery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- Latest compiled Fontawesome -->
+<script src="https://use.fontawesome.com/ed27b3a4a2.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">iBuy</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li id="user_profile"><a id="user_profile_text"
+						href="user_profile.html"></a></li>
+					<li id="user_logout"><a href="index.html"><span
+							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+
+		<form class="form-horizontal" id="form_edit_user"">
+			<fieldset>
+
+				<legend>My Profile</legend>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="edit_username_input">Username:</label>
+					<div class="col-md-5">
+						<input id="edit_username_input" name="username" type="text"
+							placeholder="username" class="form-control input-md" required="">
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="edit_email_input">Email:</label>
+					<div class="col-md-5">
+						<input id="edit_email_input" name="email" type="text"
+							placeholder="email" class="form-control input-md" required="">
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="edit_first_name_input">First
+						Name:</label>
+					<div class="col-md-5">
+						<input id="edit_first_name_input" name="firstName" type="text"
+							placeholder="first name" class="form-control input-md"
+							required="">
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="edit_last_name_input">Last
+						Name:</label>
+					<div class="col-md-5">
+						<input id="edit_last_name_input" name="lastName" type="text"
+							placeholder="last name" class="form-control input-md" required="">
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="edit_birth_date_input">Birth
+						Date:</label>
+					<div class="col-md-5">
+						<input id="edit_birth_date_input" name="birthDate" type="text"
+							placeholder="yyyy-MM-dd" class="form-control input-md"
+							required="">
+
+					</div>
+				</div>
+
+			</fieldset>
+	</div>
+	<div style="margin-top: 50px" class="container-fluid">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-6">
+
+						<Button id="edit_user_update" type="button"
+							class="btn btn-block btn-lg btn-success">Update</Button>
+					</div>
+					<div class="col-md-6">
+
+						<button id="edit_user_cancel" type="button"
+							class="btn btn-lg btn-danger btn-block">Cancel/Back</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+	</form>
+	<h1 id="edit_user_response"
+		style="margin-top: 50px; text-align: center"></h1>
+	<script type="text/javascript" src="user_profile.js"></script>
+</body>
+</html>

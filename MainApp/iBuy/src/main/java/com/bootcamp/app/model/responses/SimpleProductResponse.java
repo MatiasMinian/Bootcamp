@@ -8,6 +8,7 @@ public class SimpleProductResponse {
 	
 	private Long id;
 	private String name;
+	private String description;
 	private boolean reserved;
 	private String categoryName;
 	private BigDecimal price;
@@ -21,6 +22,7 @@ public class SimpleProductResponse {
 	public SimpleProductResponse(Product product) {
 		this.id = product.getId();
 		this.name = product.getName();
+		this.description = product.getDescription();
 		this.categoryName = product.getCategory().getName();
 		this.price = product.getPrice();
 		this.isNew = product.isNew();		
@@ -34,6 +36,14 @@ public class SimpleProductResponse {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public boolean isReserved() {
