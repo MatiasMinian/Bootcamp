@@ -88,4 +88,16 @@ public class ProductController {
 		productManager.saveNewProduct(product);
 		return new MessageResponse(Constants.MSG_SUCCESS, "Your product was created successfully");
 	}
+	
+	@RequestMapping(value = "/api/products/search={searchText}", produces = "application/json", method = RequestMethod.GET)
+	public List<SimpleProductResponse> searchProducts(@PathVariable String searchText) {
+		List<Product> products = productManager.findProductsByWord(searchText);	
+		List<SimpleProductResponse> productsResponse = new ArrayList<>();
+		products.forEach(product -> {
+			SimpleProductResponse simpleProduct = new SimpleProductResponse(product);
+			simpleProduct.setReserved(productService.isReserved(product));
+			productsResponse.add(simpleProduct);
+		});
+		return productsResponse;
+	}
 }
