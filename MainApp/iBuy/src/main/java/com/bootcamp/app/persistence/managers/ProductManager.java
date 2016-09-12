@@ -122,6 +122,18 @@ public class ProductManager {
 		}
 		return products;		
 	}
+	
+	public List<Product> getProductsByUser(Long userId) {
+		List<Product> products = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			products.addAll(productDAO.getByUser(userId));
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return products;		
+	}
 
 	/* *** GETTERS & SETTERS *** */
 

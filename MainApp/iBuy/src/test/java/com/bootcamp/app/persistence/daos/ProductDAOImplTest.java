@@ -155,4 +155,25 @@ public class ProductDAOImplTest {
 		assertTrue(productsInPhones.get(0).getName().equals("nexus"));
 		assertTrue(productsInPhones.get(1).getName().equals("samsung"));		
 	}
+	
+	@Test
+	public void testGetByUser() {
+		User pablo = new User("Pablo", "Alice", "pab", Calendar.getInstance(), "pab@gmail.com");
+		Product LG = new Product("nexus", "phone", pablo, phones, "img", new BigDecimal(1600), true);
+		beginTransaction();
+		userDAO.save(pablo);
+		productDAO.save(LG);
+		commitTransaction();
+		
+		beginTransaction();
+		List<Product> products = productDAO.getByUser(matias.getId());
+		commitTransaction();
+		
+		beginTransaction();
+		productDAO.delete(LG);
+		userDAO.delete(pablo);
+		commitTransaction();
+		
+		assertTrue(products.size() == 3);		
+	}
 }

@@ -55,4 +55,11 @@ public class ProductDAOImpl extends GenericDaoImpl<Product, Long> implements Pro
 		Query query = getSession().createQuery(sql).setParameter("id", categoryId);
 		return findMany(query);
 	}
+
+	@Override
+	public List<Product> getByUser(Long userId) {
+		String sql = "SELECT p FROM Product p WHERE p.owner.id = :id";
+		Query query = getSession().createQuery(sql).setParameter("id", userId);
+		return findMany(query);
+	}
 }
