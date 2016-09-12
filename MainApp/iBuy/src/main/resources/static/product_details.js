@@ -11,7 +11,6 @@ function setData() {
 		if (status == "success") {
 			$("#product_title").text(data.product.name);
 			$("#product_category").text(data.product.categoryName);
-			alert(data.product.isNew);
 			if (data.product.isNew) {
 				$("#product_condition").text("New");
 			} else {
@@ -23,10 +22,11 @@ function setData() {
 			$("#user_last_name").text(data.user.lastName);
 			$("#username").text(data.user.username);
 			$("#user_email").text(data.user.email);
-			alert(data.product.reserved);
 			if (data.product.reserved) {
 				$("#button_reserve").addClass("disabled");
 			} else {
+				var user = JSON.parse(localStorage.getItem("user_session"));
+				data["id"] = user.id; 
 				$("#button_reserve").click(function() {
 					$.ajax({
 						type: "POST",

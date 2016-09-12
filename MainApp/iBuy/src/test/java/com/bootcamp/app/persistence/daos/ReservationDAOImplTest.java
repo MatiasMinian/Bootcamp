@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -106,6 +107,26 @@ public class ReservationDAOImplTest {
 		beginTransaction();
 		reservationDAO.delete(pabloResNexus);
 		assertNull(reservationDAO.findById(Reservation.class, pabloResNexus.getId()));
+		commitTransaction();
+	}
+	
+	@Test
+	public void testGetReservationsByUser() {
+		Product ipad = new Product("ipad", "apple", pablo, phones, "img", new BigDecimal(3000), true);
+		Reservation matiasResIpad = new Reservation(matias, ipad);
+		beginTransaction();
+		productDAO.save(ipad);
+		reservationDAO.save(matiasResIpad);
+		commitTransaction();
+		beginTransaction();
+		List<Reservation> reservations = reservationDAO.getByUser(pablo.getId());
+		commitTransaction();
+		assertTrue(reservations.size() == 1);
+		assertTrue(reservations.get(0).getProduct().getOwner().getFirstName().equals("Pablo"));
+		
+		beginTransaction();
+		reservationDAO.delete(matiasResIpad);
+		productDAO.delete(ipad);
 		commitTransaction();
 	}
 }

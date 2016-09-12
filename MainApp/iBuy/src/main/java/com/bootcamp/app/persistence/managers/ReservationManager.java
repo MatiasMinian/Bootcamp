@@ -90,6 +90,18 @@ public class ReservationManager {
 		}
 		return reservations;
 	}
+	
+	public List<Reservation> getReservationsByUser(Long userId) {
+		List<Reservation> reservations = new ArrayList<>();
+		try {
+			HibernateUtil.beginTransaction();
+			reservations.addAll(reservationDAO.getByUser(userId));
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		return reservations;
+	}
 
 	/* *** GETTERS & SETTERS *** */
 
