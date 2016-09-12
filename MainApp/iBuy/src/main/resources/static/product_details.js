@@ -22,7 +22,8 @@ function setData() {
 			$("#user_last_name").text(data.user.lastName);
 			$("#username").text(data.user.username);
 			$("#user_email").text(data.user.email);
-			if (data.product.reserved) {
+			var user = JSON.parse(localStorage.getItem("user_session"));
+			if (data.product.reserved || data.user.id == user.id) {
 				$("#button_reserve").addClass("disabled");
 			} else {
 				var user = JSON.parse(localStorage.getItem("user_session"));
