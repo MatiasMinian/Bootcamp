@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iBuy - My Products</title>
+<!-- Latest compiled jQuery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- Latest compiled Fontawesome -->
+<script src="https://use.fontawesome.com/ed27b3a4a2.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Custom styles for this template -->
+<link href="home.css" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">iBuy</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li id="catalog_tab"><a href="home.html">Catalog</a></li>
+					<li id="my_products_tab" class="active"><a href="#">My
+							Products</a></li>
+					<li id="my_reservations_tab"><a href="my_reservations.html">My
+							Reservation</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="user_profile"><a id="user_profile_text"
+						href="user_profile.html"></a></li>
+					<li id="user_logout"><a href="index.html"><span
+							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+
+				<button id="button_create_product" type="button"
+					class="btn btn-block btn-success">Create Product</button>
+			</div>
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+			</div>
+		</div>
+
+
+		<table style="margin-top: 50px" id="main_table"
+			class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Category</th>
+					<th>Price</th>
+					<th>Condition</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="main_table_body">
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+
+	<script type="text/javascript" src="my_products.js"></script>
+</body>
+</html>
