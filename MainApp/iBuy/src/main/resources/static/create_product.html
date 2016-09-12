@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iBuy - Create Products</title>
+<!-- Latest compiled jQuery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- Latest compiled Fontawesome -->
+<script src="https://use.fontawesome.com/ed27b3a4a2.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Custom styles for this template -->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">iBuy</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li id="catalog_tab"><a href="home.html">Catalog</a></li>
+					<li id="my_products_tab" class="active"><a
+						href="my_products.html">My Products</a></li>
+					<li id="my_reservations_tab"><a href="my_reservations.html">My
+							Reservation</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li id="user_profile"><a id="user_profile_text"
+						href="user_profile.html"></a></li>
+					<li id="user_logout"><a href="index.html"><span
+							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<form class="form-horizontal" id="form_create_product">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Create Product</legend>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="name_input">Name:</label>
+				<div class="col-md-5">
+					<input id="name_input" name="name" type="text"
+						placeholder="name" class="form-control input-md">
+
+				</div>
+			</div>
+
+			<!-- Textarea -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="description_input">Description:</label>
+				<div class="col-md-4">
+					<textarea class="form-control" id="description_input"
+						name="description"></textarea>
+				</div>
+			</div>
+
+			<!-- Select Basic -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="category_input">Category:</label>
+				<div class="col-md-5">
+					<select id="category_input" name="categoryId"
+						class="form-control">
+					</select>
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="price_input">Price:</label>
+				<div class="col-md-5">
+					<input id="price_input" name="price" type="text"
+						placeholder="price" class="form-control input-md">
+
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="image_input">Image
+					URL:</label>
+				<div class="col-md-5">
+					<input id="image_input" name="imageURL" type="text"
+						placeholder="image url" class="form-control input-md">
+
+				</div>
+			</div>
+
+			<!-- Multiple Radios (inline) -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="condition_input">Condition</label>
+				<div class="col-md-4">
+					<label class="radio-inline" for="condition_input-0"> <input
+						type="radio" name="condition" id="condition_input_new"
+						value="1" checked="checked"> New
+					</label> <label class="radio-inline" for="condition_input_used"> <input
+						type="radio" name="condition" id="condition_input-1"
+						value="0"> Used
+					</label>
+				</div>
+			</div>
+
+		</fieldset>
+		<div style="margin-top: 50px" class="container-fluid">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col-md-6">
+
+							<Button id="new_product_create" type="button"
+								class="btn btn-block btn-lg btn-success">Create</Button>
+						</div>
+						<div class="col-md-6">
+
+							<button id="new_product_cancel" type="button"
+								class="btn btn-lg btn-danger btn-block">Cancel/Back</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</div>
+	</form>
+
+	<h1 id="create_product_response"
+		style="margin-top: 50px; text-align: center"></h1>
+
+
+
+
+	<script type="text/javascript" src="create_product.js"></script>
+</body>
+</html>

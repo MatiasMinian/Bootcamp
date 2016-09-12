@@ -1,5 +1,6 @@
 $(function() {
 	showProducts();
+	setClickOnCreateProduct();
 });
 
 function showProducts() {
@@ -56,4 +57,10 @@ function productSold(product, tr) {
 			$("#edit_user_response").text("A problem has occured. Try again");
 		}
 	});
+}
+
+function setClickOnCreateProduct() {
+	$("#button_create_product").click(function() {
+		window.location.href = "create_product.html";		
+	});	
 }
