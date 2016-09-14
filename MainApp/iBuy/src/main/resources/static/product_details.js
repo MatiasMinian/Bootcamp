@@ -26,8 +26,7 @@ function setData() {
 			if (data.product.reserved || data.user.id == user.id) {
 				$("#button_reserve").addClass("disabled");
 			} else {
-				var user = JSON.parse(localStorage.getItem("user_session"));
-				data["id"] = user.id; 
+				data.user.id = user.id; 
 				$("#button_reserve").click(function() {
 					$.ajax({
 						type: "POST",
