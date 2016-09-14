@@ -13,7 +13,7 @@ public class ReservationDAOImpl extends GenericDaoImpl<Reservation, Long> implem
 
 	@Override
 	public List<Reservation> getByUser(Long userId) {
-		String sql = "SELECT r FROM Reservation r WHERE r.product.owner.id = :id";
+		String sql = "SELECT r FROM Reservation r WHERE r.buyer.id = :id";
 		Query query = getSession().createQuery(sql).setParameter("id", userId);
 		return findMany(query);
 	}

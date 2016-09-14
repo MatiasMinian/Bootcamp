@@ -39,9 +39,14 @@ public class ProductController {
 	public ProductController() {
 	}
 	
-	@RequestMapping(value = "/api/products", produces = "application/json", method = RequestMethod.GET)
-	public List<SimpleProductResponse> getProducts() {
-		List<Product> products = productManager.sortProductsByCheapest();	
+	@RequestMapping(value = "/api/products/sortby={sorter}", produces = "application/json", method = RequestMethod.GET)
+	public List<SimpleProductResponse> getProducts(@PathVariable String sorter) {
+		List<Product> products; 	
+		if (sorter.equals("cheapest")) {
+			products = productManager.sortProductsByCheapest();
+		} else {
+			products = productManager.sortProductsByPriciest();
+		}
 		List<SimpleProductResponse> productsResponse = new ArrayList<>();
 		products.forEach(product -> {
 			SimpleProductResponse simpleProduct = new SimpleProductResponse(product);

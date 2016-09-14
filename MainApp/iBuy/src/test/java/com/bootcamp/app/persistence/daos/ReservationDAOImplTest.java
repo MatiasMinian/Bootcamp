@@ -112,21 +112,11 @@ public class ReservationDAOImplTest {
 	
 	@Test
 	public void testGetReservationsByUser() {
-		Product ipad = new Product("ipad", "apple", pablo, phones, "img", new BigDecimal(3000), true);
-		Reservation matiasResIpad = new Reservation(matias, ipad);
-		beginTransaction();
-		productDAO.save(ipad);
-		reservationDAO.save(matiasResIpad);
-		commitTransaction();
 		beginTransaction();
 		List<Reservation> reservations = reservationDAO.getByUser(pablo.getId());
 		commitTransaction();
 		assertTrue(reservations.size() == 1);
-		assertTrue(reservations.get(0).getProduct().getOwner().getFirstName().equals("Pablo"));
-		
-		beginTransaction();
-		reservationDAO.delete(matiasResIpad);
-		productDAO.delete(ipad);
-		commitTransaction();
+		assertTrue(reservations.get(0).getProduct().getOwner().getFirstName().equals("Matias"));
+		assertTrue(reservations.get(0).getProduct().getName().equals("nexus"));
 	}
 }

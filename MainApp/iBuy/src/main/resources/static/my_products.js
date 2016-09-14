@@ -19,20 +19,13 @@ function showProducts() {
 				condition = "Used"
 			}
 			var tdConditon = $("<td>"+condition+"</td>");
-			var tdEditButton = $("<td></td>");
-			var editButton = $("<button type=\"button\" class=\"btn btn-default\">Edit</button>");
-			editButton.click(function() {
-				localStorage.setItem("product_id", product.id);
-				window.location.href = "edit_product.html";
-			});
-			tdEditButton.append(editButton);
 			var tdSoldButton = $("<td></td>");
-			var soldButton = $("<button type=\"button\" class=\"btn btn-success\">Sold</button>");
+			var soldButton = $("<button type=\"button\" class=\"btn btn-primary\">Sold</button>");
 			soldButton.click(function() {
 				productSold(product, tr)								
 			});
 			tdSoldButton.append(soldButton);
-			tr.append(tdName, tdCategory, tdPrice, tdConditon, tdEditButton, tdSoldButton);
+			tr.append(tdName, tdCategory, tdPrice, tdConditon, tdSoldButton);
 			mainTableBody.append(tr);
 		});
 	}, "json");
